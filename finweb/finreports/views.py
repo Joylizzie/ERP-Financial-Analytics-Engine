@@ -2,7 +2,7 @@ from django.shortcuts import render
 from pathlib import Path
 
 from django.conf import settings
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from bokeh.plotting import figure
 from bokeh.resources import CDN
 from django.views import generic
@@ -97,3 +97,43 @@ def pl(request):
 def araging(request):
 
     return render(request,"this is Account receivable aging")
+
+
+# -----------------------------
+# New JSON endpoints
+# -----------------------------
+def pl_json(request):
+    conn = connections['default']
+    with conn.cursor() as curs:
+        curs.execute("set search_path to ocean_stream;")
+        curs.execute("""select * from transaction_list('US001',500000, 999999, '2021-03-01', '2021-03-31')""")
+        pls = curs.fetchall()
+        conn.commit()
+
+    df = pd.DataFrame(pls, columns=['company_code', 'sub_name','profit_centre','currency_id','amount'])
+    df['amount'] = df['amount'].astype(float)
+
+    company_code = request.GET.get("company_code")
+    if company_code:
+        df = df[df['company_code'] == company_code]
+
+    data = df.to_dict(orient='records')
+    return JsonResponse({"pl": data})
+
+def balance_sheet_json(request):
+    BASE_DIR = Path(__file__).resolve().parent.parent.parent
+    with open(f'{BASE_DIR}/reporting_results/4_sum_bs_03_2021.csv', 'r') as csv_fp:
+        df = pd.read_csv(csv_fp)
+
+    company = request.GET.get("company")
+    if company:
+        df = df[df['company'] == company]
+
+    return JsonResponse({"balance_sheet": df.to_dict(orient='records')})
+
+def araging_json(request):
+    data = [
+        {"customer": "Customer A", "company": "US001", "amount_due": 1000, "days_overdue": 10, "due_date": "2026-01-01"},
+        {"customer": "Customer B", "company": "US002", "amount_due": 500, "days_overdue": 30, "due_date": "2025-12-01"},
+    ]
+    return JsonResponse({"ar_aging": data})
