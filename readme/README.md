@@ -78,7 +78,7 @@ This project is developed within a dedicated virtual environment to ensure depen
 ### Installation
 ```bash
 # Clone the Repository
-git clone [https://github.com/Myname/ERP-Financial-Analytics-Engine.git](https://github.com/Myname/ERP-Financial-Engine.git)
+git clone [https://github.com/Joylizzie/ERP-Financial-Analytics-Engine.git](https://github.com/Myname/ERP-Financial-Engine.git)
 cd ERP-Financial-Engine
 
 # Create and activate virtual environment on Fedora
@@ -93,7 +93,8 @@ pip install -r requirements.txt
 Run the master script to build the database, post ledger entries, and generate reporting artifacts:
 ```bash
 # One-click run: End-to-end database build to financial reports with visualizationBuild the entire financial environment
-python finweb/manage.py runserver
+# One-click run: End-to-end database build to financial reports with visualization
+sh run_engine.sh
 ```
 ### Accessing the Results
 The FinWeb dashboard serves as the visualization layer for the underlying ERP engine.
