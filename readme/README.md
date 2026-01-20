@@ -1,8 +1,13 @@
 # ERP-Style Financial Analytics & Data Modeling Engine
 > **Full-Stack Financial Data Engineering & ERP Simulation**
 
+
+
 ## Overview
-A comprehensive full-stack ERP simulation designed to model complex financial data flows, multi-entity accounting logic, and automated statutory/management reporting
+
+A comprehensive full-stack ERP simulation designed to model complex financial data flows, multi-entity accounting logic, and automated statutory/management reporting.
+
+**TL;DR:** A full-stack ERP simulation engine for synthetic financial data, ledger posting, and automated reporting with Django/Bokeh dashboards.
 
 ---
 
@@ -88,10 +93,13 @@ pip install -r requirements.txt
 Run the master script to build the database, post ledger entries, and generate reporting artifacts:
 ```bash
 # One-click run: End-to-end database build to financial reports with visualizationBuild the entire financial environment
-python finweb/manage.py runserversh run_engine.sh
+python finweb/manage.py runserver
 ```
 ### Accessing the Results
 The FinWeb dashboard serves as the visualization layer for the underlying ERP engine.
 
 * **URL**: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 * **Authentication**: Interactive; the `run_engine.sh` script will prompt for your database password in the terminal (secure input).
+
+### Sample Results
+![ERP Financial Dashboard](finweb/static/images/dashboard.png)
