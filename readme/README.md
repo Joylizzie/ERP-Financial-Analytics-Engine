@@ -1,59 +1,82 @@
-<h1>Financial_reports automation</h1>
+# ERP-Style Financial Analytics & Data Modeling Engine
+> **Full-Stack Financial Data Engineering & ERP Simulation**
 
-<h2>General information</h2> 
+## Overview
+A comprehensive full-stack ERP simulation designed to model complex financial data flows, multi-entity accounting logic, and automated statutory/management reporting
 
-This project is for trying to demonstrate automation techniques for generating financal reports.
+---
 
-There is no actual data available from a real company, therefore fictional data will be 
-generated via Python random functions and stored in a PostgreSQL database.
+## The Virtual Company (VC) Model
+The engine simulates a global IT services conglomerate with complex revenue streams:
 
-The fictional company called Ocean Stream, provides Managed Services(MS), Software Sales(SI), 
- and Consulting Services(CO). It also has in-house software development. 
+* **Business Structure:** 6 subsidiaries, 3 Lines of Business (Managed Services, System Integration, Consulting).
+* **Revenue Models:** Hardware (one-off), SaaS/PaaS (One-off and subscriptions), and Consulting (hourly).
+* **Cost Tracking:** Management of Profit Centers, Cost Centers, and **WBS (Work Breakdown Structure)** codes for R&D capitalization.
 
-Ocean Stream currently operates in the US, but is begining to expand to other countries.
+---
 
-Ocean Stream provides obligatory financial reports following IFRS, US GAAP to its investors and 
-external stakeholders. Equally importantly it must generate ad hoc reports for its 
-internal stakeholders including the Board Directors, Business Unit owners and Profit centre owners, 
-to better suport timely decision making.
+## Technical Architecture
 
-Ocean Stream currently has 3 Business Units(BU), an ever increasing number of Profit Centres, Cost
-Centres. It has 3 new products under developement which require an increasing number of WBS(Work 
-Breakdown Structure) codes. 
+The system utilizes a modular pipeline architecture to transform targeted financial objectives into a structured relational database and a web-based reporting interface.
 
-This project will show step by step, designing and creating a financial database, populating that database
-with random financial data, and performing a variety of financial analyses using tools such as Excel,
-Tableau, and custom Python code. I will emphasize using automation to reduce repetitious manual work.
 
-<h2> Technical Environment</h2>
 
-1.Database: Postgresql
-2.Client:PgAdmin4 - currently host in local laptop
-3.Python 3.6
-4.Pandas
-5.Numpy
-6.Bokeh
-7.Tkinter
+```mermaid
+graph TD
+    A[Synthetic Data Engine] -->|Target EBITDA/Margin| B(PostgreSQL DB)
+    subgraph "Core Financial Modules"
+    B --> C[AR/AP Subledgers]
+    B --> D[Fixed Assets & HR]
+    C --> E[General Ledger - Double Entry]
+    D --> E
+    end
+    E -->|Validation & Logic| F[Aggregation Layer]
+    F --> G[Reporting Engine]
+    G --> H[FinWeb Dashboard - Django]
+    G --> I[Artifacts: PDF / CSV / JSON]
+```
 
-<h2>How To</h2>
 
-More details to be added.
+1. Deterministic Synthetic Data Generation
 
-Ocean Stream financial reporting team
-Lizzie Zhou
-2021-03-01
+This module bypasses standard randomization in favor of goal-oriented data engineering. The Python-based logic reverse-engineers transactions based on targeted EBITDA and Gross Margin parameters, ensuring the generated dataset adheres to specific financial performance benchmarks for testing.
 
-To Install Posgres on Linux:
+2. High-Integrity Ledger Logic
 
-    sudo apt update
-    sudo apt install postgresql postgresql-contrib
+The system implements robust Double-Entry Bookkeeping principles. It features automated posting logic from AR (Accounts Receivable) and AP (Accounts Payable) sub-ledgers to the General Ledger. The schema is built on 33+ normalized PostgreSQL tables with strict referential integrity (PK/FK) to prevent data corruption.
 
-bash test_conn.sh
+3. Automated ETL & Reporting Pipeline
 
-sudo -u postgres createuser --interactive at promt, say user is financial_user; allow for super user sudo -u postgres psql
+The project features a "One-Click" deployment capability. Utilizing Python and Shell scripting, the engine automates database migrations, transaction ingestion, month-end accruals, depreciation, and the generation of multi-format reporting artifacts (PDF, CSV, JSON).
 
-connection parameters: psql --host=localhost --dbname=test_conn --username financial_user
+## Technical Stack
 
-sudo -u postgres psql -d -a -f createTable.sql
+* **Languages**: Python (Pandas, NumPy), SQL, Shell Scripting.
+* **Database**: PostgreSQL (33 tables with strict constraints).
+* **Web Framework**: Django (FinWeb Dashboard).
+* **Visualization**: Bokeh & Django-integrated reporting views.
 
-psql --host=localhost --dbname=ocean_stream --username financial_user
+## Capabilities & Reports
+
+The engine generates the following standardized financial outputs:
+
+    Statutory: Balance Sheet and P&L (VC Consolidated).
+
+    Management: P&L segmented by 4 Business Units, 3 Cost Centers, and 3 Lines of Business.
+
+    Operational: AR aging reports and Product Development capitalization summaries via WBS codes.
+
+Setup & Execution
+
+    Clone the Repository: git clone https://github.com/Myname/ERP-Financial-Engine.git
+
+    Initialize the Pipeline:
+    Bash
+
+    sh run_engine.sh
+
+    This script initializes the PostgreSQL environment, generates the target-based transactions, and posts all ledger entries.
+
+    Access the FinWeb Dashboard: Navigate to http://127.0.0.1:8000 to view interactive reports and visualizations.
+
+Project ongoing since 2020. Focused on the convergence of Financial Transformation and Data Engineering.
