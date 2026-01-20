@@ -23,9 +23,6 @@ The engine simulates a global IT services conglomerate with complex revenue stre
 ## Technical Architecture
 
 The system utilizes a modular pipeline architecture to transform targeted financial objectives into a structured relational database and a web-based reporting interface.
-
-
-
 ```mermaid
 graph TD
     A[Synthetic Data Engine] -->|Target EBITDA/Margin| B(PostgreSQL DB)
@@ -40,8 +37,6 @@ graph TD
     G --> H[FinWeb Dashboard - Django]
     G --> I[Artifacts: PDF / CSV / JSON]
 ```
-
-
 1. Deterministic Synthetic Data Generation
 
 This module bypasses standard randomization in favor of goal-oriented data engineering. The Python-based logic reverse-engineers transactions based on targeted EBITDA and Gross Margin parameters, ensuring the generated dataset adheres to specific financial performance benchmarks for testing.
@@ -103,4 +98,6 @@ The FinWeb dashboard serves as the visualization layer for the underlying ERP en
 * **Authentication**: Interactive; the `run_engine.sh` script will prompt for your database password in the terminal (secure input).
 
 ### Sample Results
-![ERP Financial Dashboard](finweb/static/images/dashboard.png)
+The image below demonstrates the engine's ability to visualize multi-entity revenue and expense data directly from the PostgreSQL ledger.
+<!-- ![ERP Financial Dashboard](../finweb/static/images/dashboard.png) -->
+<img src="../finweb/static/images/dashboard.png" alt="ERP Financial Dashboard" width="500" />
