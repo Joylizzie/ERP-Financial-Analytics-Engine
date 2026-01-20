@@ -103,4 +103,6 @@ The FinWeb dashboard serves as the visualization layer for the underlying ERP en
 * **Authentication**: Interactive; the `run_engine.sh` script will prompt for your database password in the terminal (secure input).
 
 ### Sample Results
-![ERP Financial Dashboard](finweb/static/images/dashboard.png)
+The image below demonstrates the engine's ability to visualize multi-entity revenue and expense data directly from the PostgreSQL ledger.
+<!-- ![ERP Financial Dashboard](../finweb/static/images/dashboard.png) -->
+<img src="../finweb/static/images/dashboard.png" alt="ERP Financial Dashboard" width="500" />
