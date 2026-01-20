@@ -61,4 +61,7 @@ python reports/profit_loss_by_pc_3.py
 # final results with total for different categories and balance sheet is balanced if plus the total amount of profit_loss
 python reports/4_balance_sheet.py
 
+# ar aging report
 python reports/ar_aging.py
+# run django to generate Financial reports and visualizations
+python finweb/manage.py
