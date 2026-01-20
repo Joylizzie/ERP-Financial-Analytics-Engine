@@ -58,25 +58,40 @@ The project features a "One-Click" deployment capability. Utilizing Python and S
 
 ## Capabilities & Reports
 
-The engine generates the following standardized financial outputs:
+    The engine generates the following standardized financial outputs:
 
-    Statutory: Balance Sheet and P&L (VC Consolidated).
+*  **Statutory**: Balance Sheet and P&L (VC Consolidated).
 
-    Management: P&L segmented by 4 Business Units, 3 Cost Centers, and 3 Lines of Business.
+*  **Management**: P&L segmented by 4 Business Units, 3 Cost Centers, and 3 Lines of Business.
 
-    Operational: AR aging reports and Product Development capitalization summaries via WBS codes.
+*  **Operational**: AR aging reports and Product Development capitalization summaries via WBS codes.
 
-Setup & Execution
+## Environment & Dependencies
 
-    Clone the Repository: git clone https://github.com/Myname/ERP-Financial-Engine.git
+This project is developed within a dedicated virtual environment to ensure dependency isolation, security, and reproducibility across different development environments.
 
-    Initialize the Pipeline:
-    Bash
+### Installation
+```bash
+# Clone the Repository
+git clone [https://github.com/Myname/ERP-Financial-Analytics-Engine.git](https://github.com/Myname/ERP-Financial-Engine.git)
+cd ERP-Financial-Engine
 
-    sh run_engine.sh
+# Create and activate virtual environment on Fedora
+python3 -m venv venv
+source venv/bin/activate
 
-    This script initializes the PostgreSQL environment, generates the target-based transactions, and posts all ledger entries.
+# Install core financial and data dependencies
+pip install -r requirements.txt
+```
 
-    Access the FinWeb Dashboard: Navigate to http://127.0.0.1:8000 to view interactive reports and visualizations.
+### Execution
+Run the master script to build the database, post ledger entries, and generate reporting artifacts:
+```bash
+# One-click run: End-to-end database build to financial reports with visualizationBuild the entire financial environment
+python finweb/manage.py runserversh run_engine.sh
+```
+### Accessing the Results
+The FinWeb dashboard serves as the visualization layer for the underlying ERP engine.
 
-Project ongoing since 2020. Focused on the convergence of Financial Transformation and Data Engineering.
+* **URL**: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+* **Authentication**: Interactive; the `run_engine.sh` script will prompt for your database password in the terminal (secure input).
