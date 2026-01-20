@@ -23,9 +23,6 @@ The engine simulates a global IT services conglomerate with complex revenue stre
 ## Technical Architecture
 
 The system utilizes a modular pipeline architecture to transform targeted financial objectives into a structured relational database and a web-based reporting interface.
-
-
-
 ```mermaid
 graph TD
     A[Synthetic Data Engine] -->|Target EBITDA/Margin| B(PostgreSQL DB)
@@ -40,8 +37,6 @@ graph TD
     G --> H[FinWeb Dashboard - Django]
     G --> I[Artifacts: PDF / CSV / JSON]
 ```
-
-
 1. Deterministic Synthetic Data Generation
 
 This module bypasses standard randomization in favor of goal-oriented data engineering. The Python-based logic reverse-engineers transactions based on targeted EBITDA and Gross Margin parameters, ensuring the generated dataset adheres to specific financial performance benchmarks for testing.
