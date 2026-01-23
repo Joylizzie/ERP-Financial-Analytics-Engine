@@ -19,4 +19,24 @@ db.sqlite3
 finweb/__pycache__/
 finweb/finreports/__pycache__/
 finweb/finweb/__pycache__/
+kafka_2.13-3.9.0.tgz
+kafka_2.13-3.9.0/
+logs/
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.db
+*.swp
+.DS_Store
+.idea/
+.vscode/
+*.iml
+coverage/
+htmlcov/
+.tox/
+.nox/
+.coverage
 

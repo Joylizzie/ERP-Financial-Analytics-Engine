@@ -26,16 +26,19 @@ The system utilizes a modular pipeline architecture to transform targeted financ
 ```mermaid
 graph TD
     A[Synthetic Data Engine] -->|Target EBITDA/Margin| B(PostgreSQL DB)
+    
     subgraph "Core Financial Modules"
+    direction LR
     B --> C[AR/AP Subledgers]
     B --> D[Fixed Assets & HR]
-    C --> E[General Ledger - Double Entry]
+    C --> E[General Ledger]
     D --> E
     end
-    E -->|Validation & Logic| F[Aggregation Layer]
+    
+    E --> F[Aggregation Layer]
     F --> G[Reporting Engine]
-    G --> H[FinWeb Dashboard - Django]
-    G --> I[Artifacts: PDF / CSV / JSON]
+    G --> H[FinWeb Dashboard]
+    G --> I[Artifacts: PDF/CSV]
 ```
 1. Deterministic Synthetic Data Generation
 
@@ -58,9 +61,9 @@ The project features a "One-Click" deployment capability. Utilizing Python and S
 
 ## Capabilities & Reports
 
-    The engine generates the following standardized financial outputs:
+The engine currently generates the following standardized financial outputs for the VC-US entity. Support for additional subsidiaries and consolidated reporting is under development.
 
-*  **Statutory**: Balance Sheet and P&L (VC Consolidated).
+*  **Statutory**: Balance Sheet and P&L (VC-US,  Consolidated).
 
 *  **Management**: P&L segmented by 4 Business Units, 3 Cost Centers, and 3 Lines of Business.
 
@@ -73,7 +76,7 @@ This project is developed within a dedicated virtual environment to ensure depen
 ### Installation
 ```bash
 # Clone the Repository
-git clone [https://github.com/Joylizzie/ERP-Financial-Analytics-Engine.git](https://github.com/Myname/ERP-Financial-Engine.git)
+git clone https://github.com/Joylizzie/ERP-Financial-Analytics-Engine.git
 cd ERP-Financial-Engine
 
 # Create and activate virtual environment on Fedora
@@ -85,17 +88,14 @@ pip install -r requirements.txt
 ```
 
 ### Execution
-Run the master script to build the database, post ledger entries, and generate reporting artifacts:
+Run the master script to build the database, post ledger entries, and generate reports and visualizations
 ```bash
-# One-click run: End-to-end database build to financial reports with visualizationBuild the entire financial environment
-# One-click run: End-to-end database build to financial reports with visualization
 sh run_engine.sh
 ```
+* **Authentication**: Interactive; the `run_engine.sh` script will prompt for your database password in the terminal (secure input).
 ### Accessing the Results
 The FinWeb dashboard serves as the visualization layer for the underlying ERP engine.
-
 * **URL**: [http://127.0.0.1:8000](http://127.0.0.1:8000)
-* **Authentication**: Interactive; the `run_engine.sh` script will prompt for your database password in the terminal (secure input).
 
 ### Sample Results
 The image below demonstrates the engine's ability to visualize multi-entity revenue and expense data directly from the PostgreSQL ledger.
