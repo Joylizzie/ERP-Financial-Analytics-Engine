@@ -11,10 +11,15 @@ from django.db import connections
 from itertools import chain
 from pathlib import Path
 import csv
+from confluent_kafka import Producer
+import json
 
 import pandas as pd
 from bokeh.models import (HoverTool, ColumnDataSource,NumeralTickFormatter)
 from math import pi
+
+# Setup Producer (Points to your local Fedora Kafka)
+p = Producer({'bootstrap.servers': 'localhost:9092'})
 
 def index(request):
     return render(request, 'finreports/index.html')
@@ -136,4 +141,11 @@ def araging_json(request):
         {"customer": "Customer A", "company": "US001", "amount_due": 1000, "days_overdue": 10, "due_date": "2026-01-01"},
         {"customer": "Customer B", "company": "US002", "amount_due": 500, "days_overdue": 30, "due_date": "2025-12-01"},
     ]
+    # Logic: If anyone is 30+ days late, tell Kafka!
+    for entry in data:
+        if entry['days_overdue'] >= 30:
+            message = f"Send chasing letter to : {entry['customer']} is {entry['days_overdue']} days late!"
+            p.produce('ar-aging-alerts', message.encode('utf-8'))
+    
+    p.flush() # Ensure message is sent
     return JsonResponse({"ar_aging": data})
