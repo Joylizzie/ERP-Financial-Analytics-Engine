@@ -7,7 +7,7 @@
 
 A comprehensive full-stack ERP simulation designed to model complex financial data flows, multi-entity accounting logic, and automated statutory/management reporting.
 
-**TL;DR:** A full-stack ERP simulation engine for synthetic financial data, ledger posting, and automated reporting with Django/Bokeh dashboards.
+**TL;DR:** A full-stack ERP simulation engine for synthetic financial data, ledger posting, and automated reporting with Django/Bokeh dashboards, featuring Kafka-based event triggers for AR aging and alerts.
 
 ---
 
@@ -22,9 +22,9 @@ The engine simulates a global IT services conglomerate with complex revenue stre
 
 ## Technical Architecture
 
-The system utilizes a modular pipeline architecture to transform targeted financial objectives into a structured relational database and a web-based reporting interface.
-```mermaid
-graph TD
+This system simulates a full-stack ERP environment, transforming targeted financial objectives into actionable insights. The modular pipeline ingests synthetic financial data, records ledger postings in a structured relational database, and provides both web-based dashboards and automated reporting. Additionally, it can trigger real-time events — such as AR aging alerts — using Kafka, demonstrating event-driven workflows without altering legacy ERP logic.
+
+```graph TD
     A[Synthetic Data Engine] -->|Target EBITDA/Margin| B(PostgreSQL DB)
     
     subgraph "Core Financial Modules"
@@ -35,11 +35,15 @@ graph TD
     D --> E
     end
     
+    subgraph "FinWeb Layer"
+    direction TB
     E --> F[Aggregation Layer]
     F --> G[Reporting Engine]
     G --> H[FinWeb Dashboard]
-    G --> I[Artifacts: PDF/CSV]
-```
+    G --> I[Report Results: CSV / JSON]
+    G --> J[Kafka Event Triggers – AR Aging Alerts]
+    end
+
 1. Deterministic Synthetic Data Generation
 
 This module bypasses standard randomization in favor of goal-oriented data engineering. The Python-based logic reverse-engineers transactions based on targeted EBITDA and Gross Margin parameters, ensuring the generated dataset adheres to specific financial performance benchmarks for testing.
@@ -57,7 +61,7 @@ The project features a "One-Click" deployment capability. Utilizing Python and S
 * **Languages**: Python (Pandas, NumPy), SQL, Shell Scripting.
 * **Database**: PostgreSQL (33 tables with strict constraints).
 * **Web Framework**: Django (FinWeb Dashboard).
-* **Visualization**: Bokeh & Django-integrated reporting views.
+* **Visualization/Alerts**: Bokeh & Django-integrated reporting views, kafaka based event triggers
 
 ## Capabilities & Reports
 
@@ -68,6 +72,10 @@ The engine currently generates the following standardized financial outputs for 
 *  **Management**: P&L segmented by 4 Business Units, 3 Cost Centers, and 3 Lines of Business.
 
 *  **Operational**: AR aging reports and Product Development capitalization summaries via WBS codes.
+
+## 🔔 Event Alerts (Kafka – AR Aging)
+
+The Finweb subengine emits event-driven alerts using Kafka. For example, it generates AR aging events for overdue customers to support collection workflows.
 
 ## Environment & Dependencies
 
