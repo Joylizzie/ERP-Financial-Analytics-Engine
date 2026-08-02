@@ -19,8 +19,7 @@ db.sqlite3
 finweb/__pycache__/
 finweb/finreports/__pycache__/
 finweb/finweb/__pycache__/
-kafka_2.13-3.9.0.tgz
-kafka_2.13-3.9.0/
+finweb/finreports/migrations/__pycache__/
 logs/
 *.log
 *.pot
