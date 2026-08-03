@@ -49,7 +49,7 @@ def get_cust_ids(conn):
             cust_ids = curs.fetchall()# a list of tuples
             ret_lst.append(cust_ids)
  
-        with open(os.path.join('intermediate_csv',f'cust_ids_{bt}'), 'w') as write_obj:
+        with open(os.path.join('data/intermediate_csv',f'cust_ids_{bt}'), 'w') as write_obj:
             csv_writer = csv.writer(write_obj)
             csv_writer.writerow(['customer_id']) # write header        
             csv_writer.writerows(cust_ids)
@@ -73,14 +73,14 @@ def generate_value_tuples(n_sample_b, n_sample_i, start_date, end_date,conn):
 # generate sales order values and save in csv file, then upload to db from psql which is quicker comparing to below way.
 def _to_csv(n_sample_b, n_sample_i, start_date, end_date,conn, outfile):
     tups = generate_value_tuples(n_sample_b, n_sample_i, start_date, end_date,conn)
-    #print(tups)
-    with open(os.path.join('intermediate_csv', outfile), 'w') as write_obj:
+    os.makedirs('data/intermediate_csv', exist_ok=True)#print(tups)
+    with open(os.path.join('data/intermediate_csv', outfile), 'w') as write_obj:
         csv_writer = csv.writer(write_obj)
         csv_writer.writerow(['company_code', 's_order_date', 'customer_id']) # write header
         n = n_sample_b + n_sample_i
         for i in range(n):
             csv_writer.writerow(tups[i])
-        print('Done writing')
+        print('Done pre_sales_orders writing')
 
 
 if __name__ == '__main__':

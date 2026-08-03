@@ -5,6 +5,7 @@ temp.sql
 data/customers_full.csv
 in_progress/
 /henry/
+data/intermediate_csv/
 intermediate_csv/
 finweb/finweb/env
 # Environments

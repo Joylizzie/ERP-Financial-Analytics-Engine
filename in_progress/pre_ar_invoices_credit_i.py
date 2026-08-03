@@ -52,7 +52,7 @@ def get_s_so_items(conn):
         (s_so_items) = curs.fetchall()
 
     # write to csv file 
-    with open(os.path.join('intermediate_csv', 'pre_ar_invoices_credit_i_1.csv'), 'w') as write_obj:
+    with open(os.path.join('data/intermediate_csv', 'pre_ar_invoices_credit_i_1.csv'), 'w') as write_obj:
         csv_writer = csv.writer(write_obj)
         csv_writer.writerow(['company_code', 's_order_date', 'sales_order_id', 'invoice_id', 'product_id', 'area',
         'customer_id', 'amount', 'tax_amount'])
@@ -65,9 +65,9 @@ def get_s_so_items(conn):
 
 # get cost centre id via a tuple of product_id and area_code
 def get_cc_ids(pr_cc):
-    df = pd.read_csv('intermediate_csv/pre_ar_invoices_credit_i_1.csv')
+    df = pd.read_csv('data/intermediate_csv/pre_ar_invoices_credit_i_1.csv')
     df['cc_id'] = df.apply(lambda row: pr_cc[(row.product_id, row.area)], axis =1)
-    df.to_csv('intermediate_csv/pre_ar_invoices_credit_i_2.csv', index=False)
+    df.to_csv('data/intermediate_csv/pre_ar_invoices_credit_i_2.csv', index=False)
     return df
 
    
@@ -81,7 +81,7 @@ def get_rie(conn):
         (rie_ids) = curs.fetchall() 
         
     # write to csv file 
-    with open(os.path.join('intermediate_csv', 'rie_ids.csv'), 'w') as write_obj:
+    with open(os.path.join('data/intermediate_csv', 'rie_ids.csv'), 'w') as write_obj:
         csv_writer = csv.writer(write_obj)
         csv_writer.writerow(['company_code', 'entry_type_id', 'rie_id', 'date','invoice_id'])
         for rie_id in rie_ids:
@@ -103,7 +103,7 @@ def rie_cc(a, b):
     df_e = df_d.rename(columns={'tax_amount':'amount'}, inplace=True)
     df_f = pd.concat([df_c, df_d])  
     # save to csv    
-    df_f.to_csv('intermediate_csv/pre_ar_invoices_credit_i_3.csv', index=False)
+    df_f.to_csv('data/intermediate_csv/pre_ar_invoices_credit_i_3.csv', index=False)
     return df  
 
     
@@ -120,7 +120,7 @@ if __name__ == '__main__':
     get_s_so_items(conn)
     get_cc_ids(pr_cc)
     get_rie(conn)
-    a = pd.read_csv('intermediate_csv/rie_ids.csv')
-    b = pd.read_csv('intermediate_csv/pre_ar_invoices_credit_i_2.csv') 
+    a = pd.read_csv('data/intermediate_csv/rie_ids.csv')
+    b = pd.read_csv('data/intermediate_csv/pre_ar_invoices_credit_i_2.csv') 
     rie_cc(a,b) 
 
