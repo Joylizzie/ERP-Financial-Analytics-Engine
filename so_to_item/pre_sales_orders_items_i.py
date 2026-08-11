@@ -129,7 +129,7 @@ if __name__ == '__main__':
     user_str = 'ocean_user'
     conn = _get_conn(user_str)
     start_date=datetime.date(2021,3,1)
-    end_date= datetime.date(2021,3,31)
+    end_date= datetime.date(2021,7,31)
     #get_so_ids(conn, start_date, end_date)
     #get_product_ids(conn)
     #weight_pro()

@@ -125,7 +125,7 @@ if __name__ == '__main__':
     user_str = 'ocean_user'
     conn = _get_conn(user_str)
     start_date=datetime.date(2021,3,1)
-    end_date= datetime.date(2021,3,31)
+    end_date= datetime.date(2021,7,31)
 
     generate_value_tuples(conn,start_date, end_date)
     _to_csv(conn,start_date, end_date)
