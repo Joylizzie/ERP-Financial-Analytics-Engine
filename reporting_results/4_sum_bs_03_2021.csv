@@ -4,12 +4,12 @@ USD $,,,
 ,,,as of 2021-03-31
 Assets,,,
 ,Current assets,,
-,,Cash and cash equivalent,
+,,Cash and cash equivalent,10000000.0
 ,,Inventory,
 ,,Account receivables,
 ,,Prepaid expenses,
 ,,,
-,Total current assets,,0
+,Total current assets,,10000000.0
 ,,,
 ,Noncurrent assets,,
 ,,Property and Equipment,
@@ -17,21 +17,23 @@ Assets,,,
 ,,Net Property and Equipment,
 ,,Other assets,
 ,Total Noncurrent assets,,0
-Total Assets,,,0
+Total Assets,,,10000000.0
 ,,,
 Liabilities,,,
 ,Current liabilities,,
-,,Account payables,
+,,Account payables,529990.0
 ,,Tax payable,
 ,,Accrued expenses,
 ,,Unearned revenue,
-,Total current liabilities,,0
+,Total current liabilities,,529990.0
 ,,,
 Total Liabilities,,,
 ,,,
 Shareholder's Equity,,,
-,,Equity capital,
+,,Equity capital,10000000.0
 ,,Retained Earnings,
-Total Shareholder's Equity,,,0
+Total Shareholder's Equity,,,10000000.0
 ,,,
-Total Liabilities & Total Shareholder's Equity,,,0
+Total Liabilities & Total Shareholder's Equity,,,10529990.0
+Check!!,Balance Sheet,isn't balanced,check and correct!
+The difference is:,,,-529990.0

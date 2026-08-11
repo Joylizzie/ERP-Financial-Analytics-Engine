@@ -6,6 +6,7 @@ import csv
 import itertools
 
 random.seed(5)
+# Save the period for the bash script
 
 # without random.seed(5),if rerun the below code, the results of pre_sales_orders_items will be different because of random values were chosen.
 # fetch existing sales_order_ids and product_ids in database where the company_code is 'US001'
@@ -109,14 +110,15 @@ def generate_value_tuples(conn,start_date, end_date):
 # generate values and save in csv file, then upload to db from psql which is quicker comparing to below way.
 def _to_csv(conn, start_date, end_date):
     tups = generate_value_tuples(conn, start_date, end_date)
+    # Save the period for the bash script
     ym = start_date.strftime("%Y_%m")
                                            
-    with open(os.path.join('intermediate_csv', f'pre_sales_orders_items_i_{ym}.csv'), 'w') as write_obj:
+    with open(os.path.join('data/intermediate_csv', f'pre_sales_orders_items_i_{ym}.csv'), 'w') as write_obj:
         csv_writer = csv.writer(write_obj)
         csv_writer.writerow(['company_code','sales_order_id', 'product_id', 'units', 'unit_selling_price', 'currency_id', 'tax_code', 'shipped'])
         for tup in tups:
             csv_writer.writerow(tup)
-        print('Done writing')
+    print('Done individual customer sales order writing')
 
 
 if __name__ == '__main__':
@@ -127,7 +129,7 @@ if __name__ == '__main__':
     user_str = 'ocean_user'
     conn = _get_conn(user_str)
     start_date=datetime.date(2021,3,1)
-    end_date= datetime.date(2021,3,31)
+    end_date= datetime.date(2021,7,31)
     #get_so_ids(conn, start_date, end_date)
     #get_product_ids(conn)
     #weight_pro()

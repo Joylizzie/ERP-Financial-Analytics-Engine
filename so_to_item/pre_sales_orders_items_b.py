@@ -105,12 +105,16 @@ def _to_csv(conn, start_date, end_date):
     tups = generate_value_tuples(conn, start_date, end_date)
     #print(tups)
     ym = start_date.strftime("%Y_%m")
-    with open(os.path.join('intermediate_csv', f'pre_sales_orders_items_b_{ym}.csv'), 'w') as write_obj:
+    
+    with open(os.path.join('data/intermediate_csv', f'pre_sales_orders_items_b_{ym}.csv'), 'w') as write_obj:
         csv_writer = csv.writer(write_obj)
         csv_writer.writerow(['company_code','sales_order_id', 'product_id', 'units', 'unit_selling_price', 'currency_id', 'tax_code', 'shipped'])
         for tup in tups:
             csv_writer.writerow(tup)
-        print('Done writing')
+    # Save the period for the bash script
+    with open(os.path.join('data', 'intermediate_csv', f'pre_sales_orders_items_b_{ym}.txt'), 'w') as f:
+        f.write(ym)
+    print('Done Business sales order writing')
 
 
 if __name__ == '__main__':
@@ -121,7 +125,7 @@ if __name__ == '__main__':
     user_str = 'ocean_user'
     conn = _get_conn(user_str)
     start_date=datetime.date(2021,3,1)
-    end_date= datetime.date(2021,3,31)
+    end_date= datetime.date(2021,7,31)
 
     generate_value_tuples(conn,start_date, end_date)
     _to_csv(conn,start_date, end_date)

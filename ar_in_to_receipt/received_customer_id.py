@@ -67,7 +67,7 @@ def _to_csv(conn):
         csv_writer.writerow(['company_code', 'date', 'rie_id','customer_id']) # write header
         for tup in tups:
             csv_writer.writerow(tup)
-        print('Done writing')               
+    print('Done customer invoice and receving writing')               
              
 
        
