@@ -1,4 +1,4 @@
-# ERP-Style Financial Analytics & Data Modeling Engine
+# ERP-Style Financial Analytics system - Phase I - Single month
 > **Full-Stack Financial Data Engineering & ERP Simulation**
 
 
@@ -11,11 +11,11 @@ A comprehensive full-stack ERP simulation designed to model complex financial da
 
 ---
 
-## The Virtual Company (VC) Model
+## The Virtual Company (Ocean Stream) Model 
 The engine simulates a global IT services conglomerate with complex revenue streams:
 
-* **Business Structure:** 6 subsidiaries, 3 Lines of Business (Managed Services, System Integration, Consulting).
-* **Revenue Models:** Hardware (one-off), SaaS/PaaS (One-off and subscriptions), and Consulting (hourly).
+* **Business Structure:** 6 subsidiaries, 2 segments, 3 Lines of Business (Managed Services, System Integration, Consulting).
+* **Revenue Models:** Hardware (one-off), SaaS/PaaS (One-off and monthly and yearly subscriptions), and Consulting (hourly).
 * **Cost Tracking:** Management of Profit Centers, Cost Centers, and **WBS (Work Breakdown Structure)** codes for R&D capitalization.
 
 ---
@@ -50,7 +50,7 @@ This module bypasses standard randomization in favor of goal-oriented data engin
 
 2. High-Integrity Ledger Logic
 
-The system implements robust Double-Entry Bookkeeping principles. It features automated posting logic from AR (Accounts Receivable) and AP (Accounts Payable) sub-ledgers to the General Ledger. The schema is built on 33+ normalized PostgreSQL tables with strict referential integrity (PK/FK) to prevent data corruption.
+The system implements robust Double-Entry Bookkeeping principles. It features automated posting logic from AR (Accounts Receivable) and AP (Accounts Payable) sub-ledgers to the General Ledger. Built across 33+ normalized PostgreSQL tables, the schema enforces strict referential integrity through primary and foreign keys, as well as constraints, to guarantee data consistency and prevent corruption.
 
 3. Automated ETL & Reporting Pipeline
 
