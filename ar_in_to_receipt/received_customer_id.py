@@ -79,7 +79,7 @@ if __name__ == '__main__':
     # conn = _get_conn(pw, user_str)
     conn = _get_conn(user_str)
     get_invoice_ids(conn)
-    n = 780
+    n = 7
     weighted_receipt(conn,n)
     _to_csv(conn)
             
