@@ -26,11 +26,15 @@ psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f ar_in_to_receipt
 # insert ar invoice items - credit side
 psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f ar_in_to_receipt/insert_ar_invoice_items_credit.sql
 # copy ar_in_to_receipt_id to tmp
-# bash create_pre_ar_receipt_id.sh
+bash ar_in_to_receipt/create_pre_ar_receipt_id.sh
 # ar_receipt_item ids
 psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f ar_in_to_receipt/pre_ar_receipt_id.sql
 # ar_receipt_item double entries for both debit and credit side  
 psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f ar_in_to_receipt/pre_ar_receipt_item.sql
+
+# Post employee labour cost
+bash employee/insert_employee.sh
+psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f employee/insert_employee.sql
 
 # je double entry postings(insert je_id, then journal_entry_item)
 bash je_double_entries/insert_je_capital.sh
@@ -39,13 +43,19 @@ bash je_double_entries/insert_je_2.sh
 # insert ap invoice ids and its double entry postings
 bash po_in_py/insert_po_in_ap.sh
 
-
+# Insert ar_aging function into Postgres
 psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f reports/function_ar_aging.sql
+# Insert transaction_list function into Postgres
 psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f reports/function_transaction_list.sql
+# Retrieve transaction_list 
+psql --host=localhost -U ocean_user --dbname=ocean_stream -c "SET search_path TO ocean_stream;\
+              SELECT * FROM transaction_list( 'US001'::char(6), 100001::integer, 609001::integer, '2021-03-01'::date, '2021-03-31'::date)"
+# Insert trial_balance function into Postgres
 psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f reports/function_trial_balance_bspl.sql
 psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f reports/function_trial_balance_gl.sql
+psql --host=localhost -U ocean_user --dbname=ocean_stream -c "SET search_path TO ocean_stream; SELECT * FROM trial_balance_gl( 'US001'::char(6), '2021-03-01'::date, '2021-03-31'::date);"
 psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f reports/function_trial_balance_pl_whole.sql
-
+psql --host=localhost -U ocean_user --dbname=ocean_stream -c "SET search_path TO ocean_stream; SELECT * FROM trial_balance_bspl_full( 'US001'::char(6),1::integer, 70::integer, '2021-03-01'::date, '2021-03-31'::date);"
 
 # generate financial statement
 
