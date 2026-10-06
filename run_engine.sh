@@ -39,17 +39,23 @@ psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f employee/insert_
 # je double entry postings(insert je_id, then journal_entry_item)
 bash je_double_entries/insert_je_capital.sh
 bash je_double_entries/insert_je_2.sh
+bash je_double_entries/insert_je_4.sh
 
 # insert ap invoice ids and its double entry postings
-bash po_in_py/insert_po_in_ap.sh
+# bash po_in_py/insert_po_in_ap.sh
 
 # Insert ar_aging function into Postgres
 psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f reports/function_ar_aging.sql
 # Insert transaction_list function into Postgres
 psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f reports/function_transaction_list.sql
+# Insert transaction_list_in_detail function into Postgres
+psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f reports/function_transaction_list_detail.sql
 # Retrieve transaction_list 
 psql --host=localhost -U ocean_user --dbname=ocean_stream -c "SET search_path TO ocean_stream;\
-              SELECT * FROM transaction_list( 'US001'::char(6), 100001::integer, 609001::integer, '2021-03-01'::date, '2021-03-31'::date)"
+              SELECT * FROM transaction_list( 'US001'::char(5), 100001::integer, 999999::integer, '2021-03-01'::date, '2021-03-31'::date);"
+# Retrieve transaction_list_in_detail 
+psql --host=localhost -U ocean_user --dbname=ocean_stream -c "SET search_path TO ocean_stream;\
+              SELECT * FROM transaction_list_detail('US001'::char(5), 100000::integer, 999999::integer, 1::integer, '2021-03-01'::date, '2021-03-31'::date);"
 # Insert trial_balance function into Postgres
 psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f reports/function_trial_balance_bspl.sql
 psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f reports/function_trial_balance_gl.sql
@@ -61,6 +67,7 @@ psql --host=localhost -U ocean_user --dbname=ocean_stream -c "SET search_path TO
 
 # profit and loss 
 python reports/profit_loss.py
+# python reports/profit_loss_whole.py
 # profit and loss by pc 
 python reports/profit_loss_by_pc_3.py
 # balance sheets progressively achieved desired results
@@ -74,4 +81,4 @@ python reports/4_balance_sheet.py
 # ar aging report
 python reports/ar_aging.py
 # run django to generate Financial reports and visualizations
-python finweb/manage.py
+python run finweb/manage.py

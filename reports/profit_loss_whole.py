@@ -13,12 +13,22 @@ from millify import millify
 # built a waterfall chart showing company level of profit and loss: revenue deduct by cost of goods sold to get gross margin, 
 # then deduct all kinds of expenses to get the net profit 
 
-# connect to Postgres
-def _get_conn(pw, user_str):
+# # connect to Postgres
+# def _get_conn(pw, user_str):
+#     conn = psycopg2.connect(host="localhost",
+#                             database = db,
+#                             user= user_str,
+#                             password=pw)
+#     conn.autocommit = False
+#     return conn
+
+# get connection via psycopg2
+def _get_conn(user_str):
+    """use .pgpass to store postgres variables"""
     conn = psycopg2.connect(host="localhost",
                             database = db,
-                            user= user_str,
-                            password=pw)
+                            user= user_str
+                            )
     conn.autocommit = False
     return conn
 
@@ -77,9 +87,10 @@ def get_sub_graph(conn):
     
 if __name__ == '__main__':
     db = 'ocean_stream'
-    pw = os.environ['POSTGRES_PW']
-    user_str = os.environ['POSTGRES_USER']
-    conn = _get_conn(pw, user_str)
+    # pw = os.environ['POSTGRES_PW']
+    user_str = 'ocean_user'
+    # user_str = os.environ['POSTGRES_USER']
+    conn = _get_conn(user_str)
 
     get_sub_graph(conn)
 

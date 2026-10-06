@@ -34,7 +34,7 @@ as
         on ar.rie_id = ari.rie_id
         where ar.company_code = company_code_p 
         and ari.date between start_date_p and end_date_p
-        group by general_ledger_number
+        group by ar.general_ledger_number
         ) 
     union 
     -- ar receipt item db list

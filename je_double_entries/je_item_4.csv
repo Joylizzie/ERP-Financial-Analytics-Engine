@@ -1,0 +1,24 @@
+company_code,je_id,transaction_date,description,general_ledger_number,cc_id,wbs_code,currency_id,debit_credit,amount
+US001,4,2021-03-31,March 21 rent,603001,SKG02,,1,debit,150000
+US001,4,2021-03-31,March 21 rent,603001,SKG05,,1,debit,90000
+US001,4,2021-03-31,March 21 rent,603001,PKG03,,1,debit,80000
+US001,4,2021-03-31,March 21 rent,603001,PKG04,,1,debit,99990
+US001,4,2021-03-31,March 21 rent,603001,CKG06,,1,debit,110000
+US001,4,2021-03-31,March 21 utilities,603002,ADM01,,1,debit,129980
+US001,4,2021-03-31,March 21 communication wifi cost,603002,ADM01,,1,debit,49000
+US001,4,2021-03-31,March 21 marking fee,602001,MAR01,,1,debit,600000
+US001,4,2021-03-31,March 21 office supply,605001,ADM01,,1,debit,85000
+US001,4,2021-03-31,March 21 insurance fee,607001,ADM01,,1,debit,185000
+US001,4,2021-03-31,March 21 travel cost,601100,ADM01,,1,debit,285000
+US001,4,2021-03-31,March 21 cloud service cost,601100,PKG04,,1,debit,859000
+US001,4,2021-03-31,March 21 cloud service cost,601100,POY03,,1,debit,285900
+US001,4,2021-03-31,March 21 cloud service cost,601100,PSE03,,1,debit,165900
+US001,4,2021-03-31,March 21 cloud service cost,601100,PSP04,,1,debit,548200
+US001,4,2021-03-31,March 21 rent,200001,,,1,credit,529990
+US001,4,2021-03-31,March 21 utilities,200001,,,1,credit,129980
+US001,4,2021-03-31,March 21 communication wifi cost,200001,,,1,credit,49000
+US001,4,2021-03-31,March 21 marking fee,200001,,,1,credit,600000
+US001,4,2021-03-31,March 21 office supply,200001,,,1,credit,85000
+US001,4,2021-03-31,March 21 insurance fee,200001,,,1,credit,185000
+US001,4,2021-03-31,March 21 travel cost,200001,,,1,credit,285000
+US001,4,2021-03-31,March 21 cloud service cost,200001,,,1,credit,1859000

@@ -1,0 +1,9 @@
+company_code,vendor_id,pie_id,description,general_ledger_number,cc_id,wbs_code,currency_id,debit_credit,amount
+US001,SB001,1,March 21 rent,200001,,,1,credit,529990
+US001,SG001,2,March 21 utilities,200001,,,1,credit,129980
+US001,AT001,3,March 21 communication wifi cost,200001,,,1,credit,49000
+US001,SM001,4,March 21 marking fee,200001,,,1,credit,600000
+US001,CO001,5,March 21 office supply,200001,,,1,credit,85000
+US001,AM001,6,March 21 insurance fee,200001,,,1,credit,185000
+US001,HH001,7,March 21 travel cost,200001,,,1,credit,285000
+US001,GC001,8,March 21 cloud service cost,200001,,,1,credit,1859000

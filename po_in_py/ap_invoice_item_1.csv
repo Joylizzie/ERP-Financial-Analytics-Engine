@@ -1,7 +1,0 @@
-company_code,pie_id,description,general_ledger_number,cc_id,currency_id,debit_credit,amount
-US001,1,March 21 rent,603001,SKG02,1,debit,150000
-US001,1,March 21 rent,603001,SKG05,1,debit,90000
-US001,1,March 21 rent,603001,PKG03,1,debit,80000
-US001,1,March 21 rent,603001,PKG04,1,debit,99990
-US001,1,March 21 rent,603001,CKG06,1,debit,110000
-US001,1,March 21 rent,200001,,1,credit,529990

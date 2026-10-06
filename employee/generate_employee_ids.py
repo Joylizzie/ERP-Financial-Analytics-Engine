@@ -44,7 +44,7 @@ def to_csv(n, out_file):
     
 if __name__ == '__main__':
 
-    n = 3000
+    n = 2000
     out_file = '/home/lizhi/projects/joylizzie/Financial_reports/data/employee_ids.csv'
     header = ['company_code', 'employee_id']
     employee_ids(n)

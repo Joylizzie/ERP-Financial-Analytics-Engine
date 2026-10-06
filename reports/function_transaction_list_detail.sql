@@ -4,35 +4,35 @@
 */
 set search_path to ocean_stream;
 
-drop function if exists transaction_list(company_code char(5),general_ledger_number_sp integer,general_ledger_number_ep integer, 
-	start_date_p date, end_date_p date);
+drop function if exists transaction_list_detail(char(5),integer, integer,  integer,  date, date);
 
-create or replace function transaction_list(
+create or replace function transaction_list_detail(
                 company_code_p char(5), 
                 general_ledger_number_sp integer,
                 general_ledger_number_ep integer, 
+                currency_id integer,
                 start_date_p date, 
                 end_date_p date) 
    returns table(company_code char(6),
---                 entry_type_id char(3),
---				 entry_id integer,
---                 t_date date,
---                 general_ledger_number integer,
+                entry_type_id char(3),
+				 entry_id integer,
+                t_date date,
+                general_ledger_number integer,
                  revenue_cost varchar(40),
---                 cost_centre char(5),
---                 wbs_code char(5),
+                cost_centre char(5),
+                wbs_code char(5),
                  profit_centre varchar(30),
-                -- debit_credit varchar(6),
+                debit_credit varchar(6),
                  currency_id integer,
                  amount numeric)
 as
  $$
-  select tmp3.company_code, 
-         tmp3.revenue_cost,
-         tmp3.profit_centre_name,
-         tmp3.currency_id,         
-         sum(amount) 
-  from (
+  -- select tmp3.company_code, 
+  --        tmp3.revenue_cost,
+  --        tmp3.profit_centre_name,
+  --        tmp3.currency_id,         
+  --        sum(amount) 
+  -- from (
     (select tmp1.company_code, 
            tmp1.entry_type_id,
            tmp1.entry_id,
@@ -258,18 +258,18 @@ as
     inner join profit_centres pc
     on wbs.pc_id = pc.pc_id   
     order by tmp2.entry_type_id, tmp2.entry_id, tmp2.debit_credit)
-    ) tmp3
- group by tmp3.company_code, 
---           tmp3.entry_type_id,
---           tmp3.entry_id,
---           tmp3.t_date,
---           tmp3.general_ledger_number,
-           tmp3.revenue_cost,
---           tmp3.cost_centre,
---           tmp3.wbs_code,
-           tmp3.profit_centre_name,
---           tmp3.debit_credit,
-          tmp3.currency_id
+--     ) tmp3
+--  group by tmp3.company_code, 
+-- --           tmp3.entry_type_id,
+-- --           tmp3.entry_id,
+-- --           tmp3.t_date,
+-- --           tmp3.general_ledger_number,
+--            tmp3.revenue_cost,
+-- --           tmp3.cost_centre,
+-- --           tmp3.wbs_code,
+--            tmp3.profit_centre_name,
+-- --           tmp3.debit_credit,
+--           tmp3.currency_id
 ;
  
  $$ language sql;

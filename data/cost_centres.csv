@@ -24,3 +24,9 @@ US001,SSE02,vizwise_SE,SSE001
 US001,SSE05,smarteroffice_SE,SSE001
 US001,SSP02,vizwise_SP,SSP001
 US001,SSP05,smarteroffice_SP,SSP001
+US001,MAR01,marketing_department,MAR001
+US001,ADM01,administration_department,ADM001
+US001,OPS01,operation_department,OPS001
+US001,ENG01,engineering_department,ENG001
+US001,HRD01,HR,HRD001
+US001,FIN01,finance_department,FIN001

@@ -534,42 +534,50 @@ create table if not exists ar_receipt_item(
             FOREIGN KEY(currency_id) 
 	            REFERENCES currencies(currency_id)        
      );
-
+	 
 create table if not exists ap_invoice(
         company_code char(5) check (company_code ~ '[A-Z]{2}[0-9]{3}' ) not null,
         entry_type_id varchar(3) default 'PIE',
 	    pie_id serial primary key not null,
         vendor_id char(5) check (vendor_id ~ '[A-Z]{2}[0-9]{3}' ) not null,
 		date DATE NOT NULL,
-        p_order_id integer references purchase_orders(p_order_id),
+        -- p_order_id integer references purchase_orders(p_order_id),
         invoice_id varchar(10) not null,
+        -- general_ledger_number integer default 200001,
+        -- currency_id integer references currencies not null,
+       	-- debit_credit varchar(6) default 'debit' NOT NULL,
+		-- amount numeric,
         CONSTRAINT fk_companyCode
       	    FOREIGN KEY(company_code) 
 	  		    REFERENCES companies(company_code),
-	    CONSTRAINT fk_po
-            FOREIGN KEY(p_order_id) 
-	            REFERENCES purchase_orders(p_order_id),
+	    -- CONSTRAINT fk_po
+        --     FOREIGN KEY(p_order_id) 
+	    --         REFERENCES purchase_orders(p_order_id),
 	    CONSTRAINT fk_vendor
           FOREIGN KEY(vendor_id) 
 	      REFERENCES vendors(vendor_id)
-	);
-		
+		  );
+
 create table if not exists ap_invoice_item(
         company_code char(5) check (company_code ~ '[A-Z]{2}[0-9]{3}' ) not null,
+        vendor_id char(5) check (vendor_id ~ '[A-Z]{2}[0-9]{3}' ) not null,
 		pie_id integer not null,
         description varchar(80),
-        general_ledger_number integer default 200001,
+        general_ledger_number integer,
 	 	cc_id char(6) references cost_centres(cc_id),
 		wbs_code char(5) references wbs(wbs_code),
         currency_id integer references currencies not null,
-       	debit_credit varchar(6) default 'credit' NOT NULL,
+       	debit_credit varchar(6) not null check(debit_credit in ('debit', 'credit')),
         amount numeric(12,2),
         CONSTRAINT fk_companyCode
       	    FOREIGN KEY(company_code) 
 	  		    REFERENCES companies(company_code),
-        CONSTRAINT fk_apinvoice
-      	    FOREIGN KEY(pie_id) 
-	  		    REFERENCES ap_invoice(pie_id),	
+        -- CONSTRAINT fk_apinvoicepieid
+      	--     FOREIGN KEY(pie_id) 
+	  	-- 	    REFERENCES ap_invoice(pie_id),	
+		-- CONSTRAINT fk_apinvoicevendorid
+      	--     FOREIGN KEY(vendor_id) 
+	  	-- 	    REFERENCES ap_invoice(vendor_id),			
 		 CONSTRAINT fk_costcentre
 		   FOREIGN KEY(cc_id) 
 			REFERENCES cost_centres(cc_id),
