@@ -34,7 +34,7 @@ psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f ar_in_to_receipt
 
 # Post employee labour cost
 bash employee/insert_employee.sh
-psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f employee/insert_employee.sql
+# psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f employee/insert_employee.sql
 
 # je double entry postings(insert je_id, then journal_entry_item)
 bash je_double_entries/insert_je_capital.sh
@@ -66,8 +66,8 @@ psql --host=localhost -U ocean_user --dbname=ocean_stream -c "SET search_path TO
 # generate financial statement
 
 # profit and loss 
-python reports/profit_loss.py
-# python reports/profit_loss_whole.py
+# python reports/profit_loss.py
+python reports/profit_loss_whole_s.py
 # profit and loss by pc 
 python reports/profit_loss_by_pc_3.py
 # balance sheets progressively achieved desired results

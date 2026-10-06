@@ -54,9 +54,9 @@ def get_sub_graph(conn):
     df_net = pd.DataFrame.from_records([(net_profit, net_profit, 0, net_profit)],
                                        columns=['amount', 'running_total', 'y_start', 'label_pos'],
                                        index=["Net_profit"])
-    df = df.append(df_net)
+    df = pd.concat([df, df_net], ignore_index=False)
 
-    df['color'] = 'grey'
+    df['color'] = 'green'
     df.loc[df.amount < 0, 'color'] = 'red'
     df.loc[df.amount < 0, 'label_pos'] = df.label_pos
     df["bar_label"] = list(map(num_format, df['amount']))
@@ -64,10 +64,13 @@ def get_sub_graph(conn):
     source = ColumnDataSource(df)
     # the max of y_range will be the max of df['amount'], then increase 5%
     p = figure(x_range=list(df.index), y_range=(0, max(df['amount'])*1.05),
-               plot_width=800, title = "Profit and Loss waterfall")    
+               width=800, title = "Company wide Profit and Loss Waterfall")    
+
+    p.add_tools(HoverTool(tooltips=[("label", "@index"),
+                  ("Amount", "@bar_label")], mode='vline'))
     
     p.segment(x0='index', y0='y_start', x1="index", y1='running_total',
-          source=source, color="color", line_width=55)
+          source=source, color="color", line_width=50)
     
     p.grid.grid_line_alpha=0.3
     p.yaxis[0].formatter = NumeralTickFormatter(format="($ 0 a)") # format to million

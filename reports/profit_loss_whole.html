@@ -1,85 +1,61 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
-  
   <head>
-    
-      <meta charset="utf-8">
-      <title>Bokeh Plot</title>
-      
-      
-        
-          
-        
-        
-          
-        <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.2.3.min.js" integrity="sha384-T2yuo9Oe71Cz/I4X9Ac5+gpEa5a8PpJCDlqKYO0CfAuEszu1JrXLl8YugMqYe3sM" crossorigin="anonymous"></script>
-        <script type="text/javascript">
-            Bokeh.set_log_level("info");
-        </script>
-        
-      
-      
-    
+    <meta charset="utf-8">
+    <title>Bokeh Plot</title>
+    <style>
+      html, body {
+        box-sizing: border-box;
+        display: flow-root;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.10.0.min.js"></script>
+<script>
+Bokeh.set_log_level("info");
+</script>
   </head>
-  
-  
   <body>
-    
-      
-        
-          
-          
-            
-              <div class="bk-root" id="f29bad1f-4f5c-4a50-8c04-8374e5a31b44" data-root-id="1002"></div>
-            
-          
-        
-      
-      
-        <script type="application/json" id="1107">
-          {"0d2c8bdf-8a00-4b90-9c5c-b9137e8384db":{"roots":{"references":[{"attributes":{"axis":{"id":"1013"},"grid_line_alpha":0.3,"ticker":null},"id":"1015","type":"Grid"},{"attributes":{"source":{"id":"1001"}},"id":"1032","type":"CDSView"},{"attributes":{},"id":"1014","type":"CategoricalTicker"},{"attributes":{"formatter":{"id":"1033"},"ticker":{"id":"1017"}},"id":"1016","type":"LinearAxis"},{"attributes":{"level":"glyph","source":{"id":"1001"},"text":{"field":"bar_label"},"text_font_size":{"value":"8pt"},"x":{"field":"index"},"x_offset":{"value":-20},"y":{"field":"label_pos"}},"id":"1035","type":"LabelSet"},{"attributes":{},"id":"1017","type":"BasicTicker"},{"attributes":{},"id":"1011","type":"LinearScale"},{"attributes":{},"id":"1041","type":"UnionRenderers"},{"attributes":{"axis":{"id":"1016"},"dimension":1,"grid_line_alpha":0.3,"ticker":null},"id":"1019","type":"Grid"},{"attributes":{"below":[{"id":"1013"}],"center":[{"id":"1015"},{"id":"1019"},{"id":"1035"}],"left":[{"id":"1016"}],"plot_width":800,"renderers":[{"id":"1031"}],"title":{"id":"1003"},"toolbar":{"id":"1024"},"x_range":{"id":"1005"},"x_scale":{"id":"1009"},"y_range":{"id":"1007"},"y_scale":{"id":"1011"}},"id":"1002","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"1009","type":"CategoricalScale"},{"attributes":{},"id":"1042","type":"Selection"},{"attributes":{"factors":["Revenue","Cost of goods sold","Rental","net"]},"id":"1005","type":"FactorRange"},{"attributes":{"data_source":{"id":"1001"},"glyph":{"id":"1029"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1030"},"selection_glyph":null,"view":{"id":"1032"}},"id":"1031","type":"GlyphRenderer"},{"attributes":{"axis_label":"Transactions","formatter":{"id":"1039"},"ticker":{"id":"1014"}},"id":"1013","type":"CategoricalAxis"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1023","type":"BoxAnnotation"},{"attributes":{"overlay":{"id":"1023"}},"id":"1020","type":"BoxZoomTool"},{"attributes":{"data":{"amount":{"__ndarray__":"AAAAYLZbtUEAAACEPveWwQAAAACMLCDBAAAA8qArr0E=","dtype":"float64","order":"little","shape":[4]},"bar_label":["358,332,000","-96,325,537","-529,990","261,476,473"],"color":["grey","red","red","grey"],"index":["Revenue","Cost of goods sold","Rental","net"],"label_pos":{"__ndarray__":"AAAAYLZbtUEAAAA+wDivQQAAALKTKK9BAAAA8qArr0E=","dtype":"float64","order":"little","shape":[4]},"running_total":{"__ndarray__":"AAAAYLZbtUEAAAB+zTuvQQAAAPKgK69BAAAA8qArr0E=","dtype":"float64","order":"little","shape":[4]},"y_start":{"__ndarray__":"AAAAAAAAAAAAAABgtlu1QQAAAH7NO69BAAAAAAAAAAA=","dtype":"float64","order":"little","shape":[4]}},"selected":{"id":"1042"},"selection_policy":{"id":"1041"}},"id":"1001","type":"ColumnDataSource"},{"attributes":{"end":261516473.0},"id":"1007","type":"Range1d"},{"attributes":{},"id":"1021","type":"ResetTool"},{"attributes":{},"id":"1022","type":"SaveTool"},{"attributes":{},"id":"1039","type":"CategoricalTickFormatter"},{"attributes":{"line_color":{"field":"color"},"line_width":{"value":55},"x0":{"field":"index"},"x1":{"field":"index"},"y0":{"field":"y_start"},"y1":{"field":"running_total"}},"id":"1029","type":"Segment"},{"attributes":{"text":"Sales Waterfall"},"id":"1003","type":"Title"},{"attributes":{"format":"($ 0 a)"},"id":"1033","type":"NumeralTickFormatter"},{"attributes":{"line_alpha":{"value":0.1},"line_color":{"field":"color"},"line_width":{"value":55},"x0":{"field":"index"},"x1":{"field":"index"},"y0":{"field":"y_start"},"y1":{"field":"running_total"}},"id":"1030","type":"Segment"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1020"},{"id":"1021"},{"id":"1022"}]},"id":"1024","type":"Toolbar"}],"root_ids":["1002"]},"title":"Bokeh Application","version":"2.2.3"}}
-        </script>
-        <script type="text/javascript">
-          (function() {
-            var fn = function() {
-              Bokeh.safely(function() {
-                (function(root) {
-                  function embed_document(root) {
-                    
-                  var docs_json = document.getElementById('1107').textContent;
-                  var render_items = [{"docid":"0d2c8bdf-8a00-4b90-9c5c-b9137e8384db","root_ids":["1002"],"roots":{"1002":"f29bad1f-4f5c-4a50-8c04-8374e5a31b44"}}];
-                  root.Bokeh.embed.embed_items(docs_json, render_items);
-                
-                  }
+    <div id="dd43b565-0aaf-4b94-9b5d-c3c89f57ba3c" data-root-id="p1009" style="display: contents;"></div>
+  
+    <script type="application/json" id="e968654b-351f-48da-bb91-d866c9933d9d">
+      {"b35195c4-a2a9-49dd-ac17-4ee885164829":{"version":"3.10.0","title":"Bokeh Application","config":{"type":"object","name":"DocumentConfig","id":"p1056","attributes":{"notifications":{"type":"object","name":"Notifications","id":"p1057"}}},"roots":[{"type":"object","name":"Figure","id":"p1009","attributes":{"width":800,"x_range":{"type":"object","name":"FactorRange","id":"p1019","attributes":{"factors":["Revenue","Cost of goods sold","Travel expense","Marketing expense","Rental","Unitilities","Office supplies","Insurance","net"]}},"y_range":{"type":"object","name":"Range1d","id":"p1020","attributes":{"end":18132222.0}},"x_scale":{"type":"object","name":"CategoricalScale","id":"p1021"},"y_scale":{"type":"object","name":"LinearScale","id":"p1022"},"title":{"type":"object","name":"Title","id":"p1012","attributes":{"text":"Company wide Profit and Loss Waterfall"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"p1046","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1006","attributes":{"selected":{"type":"object","name":"Selection","id":"p1007","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1008"},"data":{"type":"map","entries":[["index",{"type":"ndarray","array":["Revenue","Cost of goods sold","Travel expense","Marketing expense","Rental","Unitilities","Office supplies","Insurance","net"],"shape":[9],"dtype":"object","order":"little"}],["amount",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/2NgYLjgXzPZkYGB4YF1aN1BIN2gzlAEohkSHoeB6fXmIWB6xmslML3ggyaYdpjKBqIfcDsWOgIAYzOp+kgAAAA="},"shape":[9],"dtype":"float64","order":"little"}],["running_total",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/2NgYLjgXzPZkYGBYQPjuXYQ/eD27Fowzfy4HEQrSFwtAtEJu20htFleIVie2xFBAwDx8jabSAAAAA=="},"shape":[9],"dtype":"float64","order":"little"}],["y_start",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/2NggIML/jWTHYG8DYzn2kH0g9uza8E08+NyEK0gcbUIRCfstoXQZnmFID4YAACMVhV4SAAAAA=="},"shape":[9],"dtype":"float64","order":"little"}],["label_pos",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/2NgYLjgXzPZkYGBYcOZg+0g+kFhcy2YnnmqHEQrrNtTBKITAlUh9JnQQrD8Qg0Ize1Y6AgAnB5KCUgAAAA="},"shape":[9],"dtype":"float64","order":"little"}],["color",{"type":"ndarray","array":["grey","red","red","red","red","red","red","red","grey"],"shape":[9],"dtype":"object","order":"little"}],["bar_label",{"type":"ndarray","array":["81.7M","-31.8M","-18.9M","-6M","-5.3M","-620k","-850k","-185k","18.1M"],"shape":[9],"dtype":"object","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"p1047","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1048"}}},"glyph":{"type":"object","name":"Segment","id":"p1043","attributes":{"x0":{"type":"field","field":"index"},"y0":{"type":"field","field":"y_start"},"x1":{"type":"field","field":"index"},"y1":{"type":"field","field":"running_total"},"line_color":{"type":"field","field":"color"},"line_width":{"type":"value","value":55}}},"nonselection_glyph":{"type":"object","name":"Segment","id":"p1044","attributes":{"x0":{"type":"field","field":"index"},"y0":{"type":"field","field":"y_start"},"x1":{"type":"field","field":"index"},"y1":{"type":"field","field":"running_total"},"line_color":{"type":"field","field":"color"},"line_alpha":{"type":"value","value":0.1},"line_width":{"type":"value","value":55}}},"muted_glyph":{"type":"object","name":"Segment","id":"p1045","attributes":{"x0":{"type":"field","field":"index"},"y0":{"type":"field","field":"y_start"},"x1":{"type":"field","field":"index"},"y1":{"type":"field","field":"running_total"},"line_color":{"type":"field","field":"color"},"line_alpha":{"type":"value","value":0.2},"line_width":{"type":"value","value":55}}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1018","attributes":{"tools":[{"type":"object","name":"BoxZoomTool","id":"p1033","attributes":{"dimensions":"both","overlay":{"type":"object","name":"BoxAnnotation","id":"p1034","attributes":{"syncable":false,"line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5,"level":"overlay","visible":false,"left":{"type":"number","value":"nan"},"right":{"type":"number","value":"nan"},"top":{"type":"number","value":"nan"},"bottom":{"type":"number","value":"nan"},"left_units":"canvas","right_units":"canvas","top_units":"canvas","bottom_units":"canvas","handles":{"type":"object","name":"BoxInteractionHandles","id":"p1040","attributes":{"all":{"type":"object","name":"AreaVisuals","id":"p1039","attributes":{"fill_color":"white","hover_fill_color":"lightgray"}}}}}}}},{"type":"object","name":"ResetTool","id":"p1041"},{"type":"object","name":"SaveTool","id":"p1042"}]}},"left":[{"type":"object","name":"LinearAxis","id":"p1028","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1029","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"NumeralTickFormatter","id":"p1049","attributes":{"format":"($ 0 a)"}},"major_label_policy":{"type":"object","name":"AllLabels","id":"p1031"}}}],"below":[{"type":"object","name":"CategoricalAxis","id":"p1023","attributes":{"ticker":{"type":"object","name":"CategoricalTicker","id":"p1024"},"formatter":{"type":"object","name":"CategoricalTickFormatter","id":"p1025"},"axis_label":"Transactions","major_label_policy":{"type":"object","name":"AllLabels","id":"p1026"}}}],"center":[{"type":"object","name":"Grid","id":"p1027","attributes":{"axis":{"id":"p1023"},"grid_line_alpha":0.3}},{"type":"object","name":"Grid","id":"p1032","attributes":{"dimension":1,"axis":{"id":"p1028"},"grid_line_alpha":0.3}},{"type":"object","name":"LabelSet","id":"p1050","attributes":{"level":"glyph","source":{"id":"p1006"},"x":{"type":"field","field":"index"},"y":{"type":"field","field":"label_pos"},"text":{"type":"field","field":"bar_label"},"x_offset":{"type":"value","value":-20},"text_font_size":{"type":"value","value":"8pt"}}}]}}]}}
+    </script>
+    <script>
+      (function() {
+        const fn = function() {
+          Bokeh.safely(function() {
+            (function(root) {
+              function embed_document(root) {
+              const docs_json = document.getElementById('e968654b-351f-48da-bb91-d866c9933d9d').textContent;
+              const render_items = [{"docid":"b35195c4-a2a9-49dd-ac17-4ee885164829","roots":{"p1009":"dd43b565-0aaf-4b94-9b5d-c3c89f57ba3c"},"root_ids":["p1009"]}];
+              root.Bokeh.embed.embed_items(docs_json, render_items);
+              }
+              if (root.Bokeh !== undefined) {
+                embed_document(root);
+              } else {
+                let attempts = 0;
+                const timer = setInterval(function(root) {
                   if (root.Bokeh !== undefined) {
+                    clearInterval(timer);
                     embed_document(root);
                   } else {
-                    var attempts = 0;
-                    var timer = setInterval(function(root) {
-                      if (root.Bokeh !== undefined) {
-                        clearInterval(timer);
-                        embed_document(root);
-                      } else {
-                        attempts++;
-                        if (attempts > 100) {
-                          clearInterval(timer);
-                          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
-                        }
-                      }
-                    }, 10, root)
+                    attempts++;
+                    if (attempts > 100) {
+                      clearInterval(timer);
+                      console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                    }
                   }
-                })(window);
-              });
-            };
-            if (document.readyState != "loading") fn();
-            else document.addEventListener("DOMContentLoaded", fn);
-          })();
-        </script>
-    
+                }, 10, root)
+              }
+            })(window);
+          });
+        };
+        if (document.readyState != "loading") fn();
+        else document.addEventListener("DOMContentLoaded", fn);
+      })();
+    </script>
   </body>
-  
 </html>

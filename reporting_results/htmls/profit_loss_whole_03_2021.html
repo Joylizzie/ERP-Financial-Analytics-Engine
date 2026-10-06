@@ -1,85 +1,61 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
-  
   <head>
-    
-      <meta charset="utf-8">
-      <title>profit and loss during Mar-2021</title>
-      
-      
-        
-          
-        
-        
-          
-        <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.2.3.min.js" integrity="sha384-T2yuo9Oe71Cz/I4X9Ac5+gpEa5a8PpJCDlqKYO0CfAuEszu1JrXLl8YugMqYe3sM" crossorigin="anonymous"></script>
-        <script type="text/javascript">
-            Bokeh.set_log_level("info");
-        </script>
-        
-      
-      
-    
+    <meta charset="utf-8">
+    <title>profit and loss during Mar-2021</title>
+    <style>
+      html, body {
+        box-sizing: border-box;
+        display: flow-root;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.10.0.min.js"></script>
+<script>
+Bokeh.set_log_level("info");
+</script>
   </head>
-  
-  
   <body>
-    
-      
-        
-          
-          
-            
-              <div class="bk-root" id="3e5e89d9-977a-4ef4-8e65-a77b268b0331" data-root-id="1002"></div>
-            
-          
-        
-      
-      
-        <script type="application/json" id="1177">
-          {"09bb4a8a-102a-4786-bcc1-49fc1f24dc76":{"roots":{"references":[{"attributes":{},"id":"1020","type":"PanTool"},{"attributes":{},"id":"1048","type":"UnionRenderers"},{"attributes":{"below":[{"id":"1013"}],"center":[{"id":"1015"},{"id":"1019"},{"id":"1041"}],"left":[{"id":"1016"}],"plot_width":800,"renderers":[{"id":"1037"}],"title":{"id":"1003"},"toolbar":{"id":"1027"},"x_range":{"id":"1005"},"x_scale":{"id":"1009"},"y_range":{"id":"1007"},"y_scale":{"id":"1011"}},"id":"1002","subtype":"Figure","type":"Plot"},{"attributes":{"axis_label":"Breakdown of profit and loss","axis_label_text_font_size":"12pt","axis_label_text_font_style":"bold","formatter":{"id":"1045"},"major_label_orientation":0.7853981633974483,"ticker":{"id":"1014"}},"id":"1013","type":"CategoricalAxis"},{"attributes":{"factors":["Revenue","Cost of goods sold","Rental","Net_profit"]},"id":"1005","type":"FactorRange"},{"attributes":{},"id":"1021","type":"WheelZoomTool"},{"attributes":{},"id":"1049","type":"Selection"},{"attributes":{"level":"glyph","source":{"id":"1001"},"text":{"field":"bar_label"},"text_font_size":{"value":"10pt"},"x":{"field":"df.index"},"x_offset":{"value":-50},"y":{"field":"label_pos"},"y_offset":{"value":5000000}},"id":"1041","type":"LabelSet"},{"attributes":{},"id":"1014","type":"CategoricalTicker"},{"attributes":{"text":"Profit and Loss waterfall"},"id":"1003","type":"Title"},{"attributes":{"overlay":{"id":"1026"}},"id":"1022","type":"BoxZoomTool"},{"attributes":{"axis":{"id":"1013"},"grid_line_alpha":0.3,"ticker":null},"id":"1015","type":"Grid"},{"attributes":{},"id":"1023","type":"SaveTool"},{"attributes":{"axis_label_text_font_style":"bold","formatter":{"id":"1039"},"ticker":{"id":"1017"}},"id":"1016","type":"LinearAxis"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1026","type":"BoxAnnotation"},{"attributes":{},"id":"1024","type":"ResetTool"},{"attributes":{"line_alpha":{"value":0.1},"line_color":{"field":"color"},"line_width":{"value":55},"x0":{"field":"index"},"x1":{"field":"index"},"y0":{"field":"y_start"},"y1":{"field":"running_total"}},"id":"1036","type":"Segment"},{"attributes":{},"id":"1011","type":"LinearScale"},{"attributes":{},"id":"1017","type":"BasicTicker"},{"attributes":{"source":{"id":"1001"}},"id":"1038","type":"CDSView"},{"attributes":{},"id":"1025","type":"HelpTool"},{"attributes":{"axis":{"id":"1016"},"dimension":1,"grid_line_alpha":0.3,"ticker":null},"id":"1019","type":"Grid"},{"attributes":{"line_color":{"field":"color"},"line_width":{"value":55},"x0":{"field":"index"},"x1":{"field":"index"},"y0":{"field":"y_start"},"y1":{"field":"running_total"}},"id":"1035","type":"Segment"},{"attributes":{"end":376248600.0},"id":"1007","type":"Range1d"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1020"},{"id":"1021"},{"id":"1022"},{"id":"1023"},{"id":"1024"},{"id":"1025"}]},"id":"1027","type":"Toolbar"},{"attributes":{},"id":"1009","type":"CategoricalScale"},{"attributes":{"format":"($ 0 a)"},"id":"1039","type":"NumeralTickFormatter"},{"attributes":{},"id":"1045","type":"CategoricalTickFormatter"},{"attributes":{"data":{"amount":{"__ndarray__":"AAAAYLZbtUEAAACEPveWwQAAAACMLCDBAAAA8qArr0E=","dtype":"float64","order":"little","shape":[4]},"bar_label":["358.33M","-96.33M","-529.99K","261.48M"],"color":["grey","red","red","grey"],"index":["Revenue","Cost of goods sold","Rental","Net_profit"],"label_pos":{"__ndarray__":"AAAAYLZbtUEAAAB+zTuvQQAAAPKgK69BAAAA8qArr0E=","dtype":"float64","order":"little","shape":[4]},"running_total":{"__ndarray__":"AAAAYLZbtUEAAAB+zTuvQQAAAPKgK69BAAAA8qArr0E=","dtype":"float64","order":"little","shape":[4]},"y_start":{"__ndarray__":"AAAAAAAAAAAAAABgtlu1QQAAAH7NO69BAAAAAAAAAAA=","dtype":"float64","order":"little","shape":[4]}},"selected":{"id":"1049"},"selection_policy":{"id":"1048"}},"id":"1001","type":"ColumnDataSource"},{"attributes":{"data_source":{"id":"1001"},"glyph":{"id":"1035"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1036"},"selection_glyph":null,"view":{"id":"1038"}},"id":"1037","type":"GlyphRenderer"}],"root_ids":["1002"]},"title":"Bokeh Application","version":"2.2.3"}}
-        </script>
-        <script type="text/javascript">
-          (function() {
-            var fn = function() {
-              Bokeh.safely(function() {
-                (function(root) {
-                  function embed_document(root) {
-                    
-                  var docs_json = document.getElementById('1177').textContent;
-                  var render_items = [{"docid":"09bb4a8a-102a-4786-bcc1-49fc1f24dc76","root_ids":["1002"],"roots":{"1002":"3e5e89d9-977a-4ef4-8e65-a77b268b0331"}}];
-                  root.Bokeh.embed.embed_items(docs_json, render_items);
-                
-                  }
+    <div id="c8782c6d-3c87-4a4a-b75f-3be00f6c376c" data-root-id="p1009" style="display: contents;"></div>
+  
+    <script type="application/json" id="ebdb2a29-c2f3-45b5-b52e-6b6541d674b3">
+      {"f23d9f76-e66f-4d81-b6bd-35492b2cb1aa":{"version":"3.10.0","title":"Bokeh Application","config":{"type":"object","name":"DocumentConfig","id":"p1060","attributes":{"notifications":{"type":"object","name":"Notifications","id":"p1061"}}},"roots":[{"type":"object","name":"Figure","id":"p1009","attributes":{"width":800,"x_range":{"type":"object","name":"FactorRange","id":"p1019","attributes":{"factors":["Revenue","Cost of goods sold","Travel expense","Marketing expense","Rental","Unitilities","Office supplies","Insurance","Net_profit"]}},"y_range":{"type":"object","name":"Range1d","id":"p1020","attributes":{"end":85814925.0}},"x_scale":{"type":"object","name":"CategoricalScale","id":"p1021"},"y_scale":{"type":"object","name":"LinearScale","id":"p1022"},"title":{"type":"object","name":"Title","id":"p1012","attributes":{"text":"Company wide Profit and Loss Waterfall"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"p1050","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1006","attributes":{"selected":{"type":"object","name":"Selection","id":"p1007","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1008"},"data":{"type":"map","entries":[["index",{"type":"ndarray","array":["Revenue","Cost of goods sold","Travel expense","Marketing expense","Rental","Unitilities","Office supplies","Insurance","Net_profit"],"shape":[9],"dtype":"object","order":"little"}],["amount",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/2NgYLjgXzPZkYGB4YF1aN1BIN2gzlAEohkSHoeB6fXmIWB6xmslML3ggyaYdpjKBqIfcDsWOgIAYzOp+kgAAAA="},"shape":[9],"dtype":"float64","order":"little"}],["running_total",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/2NgYLjgXzPZkYGBYQPjuXYQ/eD27Fowzfy4HEQrSFwtAtEJu20htFleIVie2xFBAwDx8jabSAAAAA=="},"shape":[9],"dtype":"float64","order":"little"}],["y_start",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/2NggIML/jWTHYG8DYzn2kH0g9uza8E08+NyEK0gcbUIRCfstoXQZnmFID4YAACMVhV4SAAAAA=="},"shape":[9],"dtype":"float64","order":"little"}],["label_pos",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/2NgYLjgXzPZkYGBYQPjuXYQ/eD27Fowzfy4HEQrSFwtAtEJu20htFleIVie2xFBAwDx8jabSAAAAA=="},"shape":[9],"dtype":"float64","order":"little"}],["color",{"type":"ndarray","array":["green","red","red","red","red","red","red","red","green"],"shape":[9],"dtype":"object","order":"little"}],["bar_label",{"type":"ndarray","array":["81.73M","-31.81M","-18.88M","-6.00M","-5.30M","-619.98K","-850.00K","-185.00K","18.09M"],"shape":[9],"dtype":"object","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"p1051","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1052"}}},"glyph":{"type":"object","name":"Segment","id":"p1047","attributes":{"x0":{"type":"field","field":"index"},"y0":{"type":"field","field":"y_start"},"x1":{"type":"field","field":"index"},"y1":{"type":"field","field":"running_total"},"line_color":{"type":"field","field":"color"},"line_width":{"type":"value","value":50}}},"nonselection_glyph":{"type":"object","name":"Segment","id":"p1048","attributes":{"x0":{"type":"field","field":"index"},"y0":{"type":"field","field":"y_start"},"x1":{"type":"field","field":"index"},"y1":{"type":"field","field":"running_total"},"line_color":{"type":"field","field":"color"},"line_alpha":{"type":"value","value":0.1},"line_width":{"type":"value","value":50}}},"muted_glyph":{"type":"object","name":"Segment","id":"p1049","attributes":{"x0":{"type":"field","field":"index"},"y0":{"type":"field","field":"y_start"},"x1":{"type":"field","field":"index"},"y1":{"type":"field","field":"running_total"},"line_color":{"type":"field","field":"color"},"line_alpha":{"type":"value","value":0.2},"line_width":{"type":"value","value":50}}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1018","attributes":{"tools":[{"type":"object","name":"PanTool","id":"p1033"},{"type":"object","name":"WheelZoomTool","id":"p1034","attributes":{"renderers":"auto"}},{"type":"object","name":"BoxZoomTool","id":"p1035","attributes":{"overlay":{"type":"object","name":"BoxAnnotation","id":"p1036","attributes":{"syncable":false,"line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5,"level":"overlay","visible":false,"left":{"type":"number","value":"nan"},"right":{"type":"number","value":"nan"},"top":{"type":"number","value":"nan"},"bottom":{"type":"number","value":"nan"},"left_units":"canvas","right_units":"canvas","top_units":"canvas","bottom_units":"canvas","handles":{"type":"object","name":"BoxInteractionHandles","id":"p1042","attributes":{"all":{"type":"object","name":"AreaVisuals","id":"p1041","attributes":{"fill_color":"white","hover_fill_color":"lightgray"}}}}}}}},{"type":"object","name":"SaveTool","id":"p1043"},{"type":"object","name":"ResetTool","id":"p1044"},{"type":"object","name":"HelpTool","id":"p1045"},{"type":"object","name":"HoverTool","id":"p1046","attributes":{"renderers":"auto","tooltips":[["label","@index"],["Amount","@bar_label"]],"sort_by":null,"mode":"vline"}}]}},"left":[{"type":"object","name":"LinearAxis","id":"p1028","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1029","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"NumeralTickFormatter","id":"p1053","attributes":{"format":"($ 0 a)"}},"axis_label_text_font_style":"bold","major_label_policy":{"type":"object","name":"AllLabels","id":"p1031"}}}],"below":[{"type":"object","name":"CategoricalAxis","id":"p1023","attributes":{"ticker":{"type":"object","name":"CategoricalTicker","id":"p1024"},"formatter":{"type":"object","name":"CategoricalTickFormatter","id":"p1025"},"axis_label":"Breakdown of profit and loss","axis_label_text_font_size":"12pt","axis_label_text_font_style":"bold","major_label_orientation":0.7853981633974483,"major_label_policy":{"type":"object","name":"AllLabels","id":"p1026"}}}],"center":[{"type":"object","name":"Grid","id":"p1027","attributes":{"axis":{"id":"p1023"},"grid_line_alpha":0.3}},{"type":"object","name":"Grid","id":"p1032","attributes":{"dimension":1,"axis":{"id":"p1028"},"grid_line_alpha":0.3}},{"type":"object","name":"LabelSet","id":"p1054","attributes":{"level":"glyph","source":{"id":"p1006"},"x":{"type":"field","field":"df.index"},"y":{"type":"field","field":"label_pos"},"text":{"type":"field","field":"bar_label"},"x_offset":{"type":"value","value":-50},"y_offset":{"type":"value","value":5000000},"text_font_size":{"type":"value","value":"10pt"}}}]}}]}}
+    </script>
+    <script>
+      (function() {
+        const fn = function() {
+          Bokeh.safely(function() {
+            (function(root) {
+              function embed_document(root) {
+              const docs_json = document.getElementById('ebdb2a29-c2f3-45b5-b52e-6b6541d674b3').textContent;
+              const render_items = [{"docid":"f23d9f76-e66f-4d81-b6bd-35492b2cb1aa","roots":{"p1009":"c8782c6d-3c87-4a4a-b75f-3be00f6c376c"},"root_ids":["p1009"]}];
+              root.Bokeh.embed.embed_items(docs_json, render_items);
+              }
+              if (root.Bokeh !== undefined) {
+                embed_document(root);
+              } else {
+                let attempts = 0;
+                const timer = setInterval(function(root) {
                   if (root.Bokeh !== undefined) {
+                    clearInterval(timer);
                     embed_document(root);
                   } else {
-                    var attempts = 0;
-                    var timer = setInterval(function(root) {
-                      if (root.Bokeh !== undefined) {
-                        clearInterval(timer);
-                        embed_document(root);
-                      } else {
-                        attempts++;
-                        if (attempts > 100) {
-                          clearInterval(timer);
-                          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
-                        }
-                      }
-                    }, 10, root)
+                    attempts++;
+                    if (attempts > 100) {
+                      clearInterval(timer);
+                      console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                    }
                   }
-                })(window);
-              });
-            };
-            if (document.readyState != "loading") fn();
-            else document.addEventListener("DOMContentLoaded", fn);
-          })();
-        </script>
-    
+                }, 10, root)
+              }
+            })(window);
+          });
+        };
+        if (document.readyState != "loading") fn();
+        else document.addEventListener("DOMContentLoaded", fn);
+      })();
+    </script>
   </body>
-  
 </html>
