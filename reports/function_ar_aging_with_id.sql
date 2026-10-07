@@ -1,22 +1,26 @@
-			  
 set search_path to ocean_stream;
-create or replace function ar_aging_report(
+
+create or replace function ar_aging_report_with_id(
 	            company_code_p char(6), customer_id_p char(6), query_date_p date)
   returns table(customer_name varchar(100),
+  				customer_id char(6),
 				phone_number char(12),
-			    current_ar numeric,
+			   total_current_ar numeric,
+               age_in_days integer,
 			  within_10_days varchar(20),
-			  within_30_days varchar(20),
-			  within_90_days  varchar(20),
-			  over_90_days varchar(20)
+			  within_20_days varchar(20),
+			  within_30_days  varchar(20),
+			  over_30_days varchar(20)
 			  )
 as
  $$
 	
 select 
 		 cn.customer_name,
+		 tmp3.customer_id,
 		 ca.phone_number,
-		 tmp3.current_ar,
+		 tmp3.current_ar as total_current_ar,
+         max(age_in_days) as age_in_days,
 		 sum(case when tmp3.age_in_days <10 then tmp3.current_ar else 0 end) as within_10_days,
 		 sum(case when tmp3.age_in_days between 10 and 19 then tmp3.current_ar else 0 end) as within_20_days,
 		 sum(case when tmp3.age_in_days between 20 and 29 then tmp3.current_ar else 0 end) as within_30_days, 
@@ -64,6 +68,7 @@ select
 	 inner join customer_addresses ca
 	 on ca.customer_id = tmp3.customer_id
 	 where tmp3.current_ar <> 0
-group by  cn.customer_name, ca.phone_number,  tmp3.current_ar 
+group by  cn.customer_name, tmp3.customer_id,
+ca.phone_number,  tmp3.current_ar 
  
 $$ language sql;

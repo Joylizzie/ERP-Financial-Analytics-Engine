@@ -1,2 +1,9 @@
-company_code,entry_type_id,pie_id,vendor_id,date,p_order_id,invoice_id
-US001,pie,1,SB001,2021-03-01,,sb0012103
+company_code,entry_type_id,pie_id,vendor_id,date,invoice_id
+US001,pie,1,SB001,2021-03-31,sb0012103
+US001,pie,2,SG001,2021-03-31,sg0012103
+US001,pie,3,AT001,2021-03-31,at0012103
+US001,pie,4,SM001,2021-03-31,sm0012103
+US001,pie,5,CO001,2021-03-31,co0012103
+US001,pie,6,AM001,2021-03-31,am0012103
+US001,pie,7,HH001,2021-03-31,hh0012103
+US001,pie,8,GC001,2021-03-31,gc0012103

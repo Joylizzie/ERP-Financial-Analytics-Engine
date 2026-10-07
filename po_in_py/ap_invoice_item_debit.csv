@@ -1,0 +1,16 @@
+company_code,vendor_id,pie_id,description,general_ledger_number,cc_id,wbs_code,currency_id,debit_credit,amount
+US001,SB001,1,March 21 rent,603001,SKG02,,1,debit,150000
+US001,SB001,1,March 21 rent,603001,SKG05,,1,debit,90000
+US001,SB001,1,March 21 rent,603001,PKG03,,1,debit,80000
+US001,SB001,1,March 21 rent,603001,PKG04,,1,debit,99990
+US001,SB001,1,March 21 rent,603001,CKG06,,1,debit,110000
+US001,SG001,2,March 21 utilities,603002,ADM01,,1,debit,129980
+US001,AT001,3,March 21 communication wifi cost,603002,ADM01,,1,debit,49000
+US001,SM001,4,March 21 marking fee,602001,MAR01,,1,debit,600000
+US001,CO001,5,March 21 office supply,605001,ADM01,,1,debit,85000
+US001,AM001,6,March 21 insurance fee,607001,ADM01,,1,debit,185000
+US001,HH001,7,March 21 travel cost,601100,ADM01,,1,debit,285000
+US001,GC001,8,March 21 cloud service cost,601100,PKG001,,1,debit,859000
+US001,GC001,8,March 21 cloud service cost,601100,POY001,,1,debit,285900
+US001,GC001,8,March 21 cloud service cost,601100,PSE001,,1,debit,165900
+US001,GC001,8,March 21 cloud service cost,601100,PSP001,,1,debit,548200

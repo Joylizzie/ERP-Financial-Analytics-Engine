@@ -8,17 +8,26 @@ from bokeh.plotting import figure, show
 from bokeh.models import (HoverTool, ColumnDataSource, LabelSet,NumeralTickFormatter)
 from math import pi
 import pathlib
-from millify import millify
 
 # built a waterfall chart showing company level of profit and loss: revenue deduct by cost of goods sold to get gross margin, 
 # then deduct all kinds of expenses to get the net profit 
 
-# connect to Postgres
-def _get_conn(pw, user_str):
+# # connect to Postgres
+# def _get_conn(pw, user_str):
+#     conn = psycopg2.connect(host="localhost",
+#                             database = db,
+#                             user= user_str,
+#                             password=pw)
+#     conn.autocommit = False
+#     return conn
+
+# get connection via psycopg2
+def _get_conn(user_str):
+    """use .pgpass to store postgres variables"""
     conn = psycopg2.connect(host="localhost",
                             database = db,
-                            user= user_str,
-                            password=pw)
+                            user= user_str
+                            )
     conn.autocommit = False
     return conn
 
@@ -30,25 +39,25 @@ def get_sub_graph(conn):
         pls = curs.fetchall()
 
     conn.commit()
-    index = [tup[1] for tup in pls]
+    label_name = [tup[1] for tup in pls]
     data = {'amount':[float(tup[2]) for tup in pls]}
 #    print(index)
 #    print(data)
         
-    df = pd.DataFrame(data=data,index=index)
+    df = pd.DataFrame(data=data,index=label_name)
     #print(df)
     # Determine the total net value by adding the start and all additional transactions
     net = df['amount'].sum()
     df['running_total'] = df['amount'].cumsum()
     df['y_start'] = df['running_total'] - df['amount']
 
-    # Where do we want to place the label?
     df['label_pos'] = df['running_total']
 
     df_net = pd.DataFrame.from_records([(net, net, 0, net)],
                                        columns=['amount', 'running_total', 'y_start', 'label_pos'],
                                        index=["net"])
-    df = df.append(df_net)
+
+    df = pd.concat([df, df_net], ignore_index=False)
     #print(df)
     df['color'] = 'grey'
     df.loc[df.amount < 0, 'color'] = 'red'
@@ -59,7 +68,7 @@ def get_sub_graph(conn):
     TOOLS = "box_zoom,reset,save"
     source = ColumnDataSource(df)
     p = figure(tools=TOOLS, x_range=list(df.index), y_range=(0, net+40000),
-               plot_width=800, title = "Sales Waterfall")    
+               width=800, title = "Company wide Profit and Loss Waterfall")    
     
     p.segment(x0='index', y0='y_start', x1="index", y1='running_total',
           source=source, color="color", line_width=55)
@@ -74,12 +83,19 @@ def get_sub_graph(conn):
     p.add_layout(labels)
     
     show(p)    
+
+    # save the html file to folder '~/reporting_results/htmls'
+    head, tail =  os.path.split(pathlib.Path(__file__).parent.absolute())
+
+    path = os.path.join(head, 'reporting_results/htmls', f'profit_loss_whole_march_2021.html')
+    output_file(filename=path, title=f'profit and loss during March 2021')        
     
 if __name__ == '__main__':
     db = 'ocean_stream'
-    pw = os.environ['POSTGRES_PW']
-    user_str = os.environ['POSTGRES_USER']
-    conn = _get_conn(pw, user_str)
+    # pw = os.environ['POSTGRES_PW']
+    user_str = 'ocean_user'
+    # user_str = os.environ['POSTGRES_USER']
+    conn = _get_conn(user_str)
 
     get_sub_graph(conn)
 

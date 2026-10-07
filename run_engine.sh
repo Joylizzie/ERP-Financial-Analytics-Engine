@@ -34,22 +34,29 @@ psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f ar_in_to_receipt
 
 # Post employee labour cost
 bash employee/insert_employee.sh
-psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f employee/insert_employee.sql
+# psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f employee/insert_employee.sql
 
 # je double entry postings(insert je_id, then journal_entry_item)
 bash je_double_entries/insert_je_capital.sh
 bash je_double_entries/insert_je_2.sh
+bash je_double_entries/insert_je_4.sh
 
 # insert ap invoice ids and its double entry postings
-bash po_in_py/insert_po_in_ap.sh
+# bash po_in_py/insert_po_in_ap.sh
 
 # Insert ar_aging function into Postgres
 psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f reports/function_ar_aging.sql
+psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f reports/function_ar_aging_with_id.sql
 # Insert transaction_list function into Postgres
 psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f reports/function_transaction_list.sql
+# Insert transaction_list_in_detail function into Postgres
+psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f reports/function_transaction_list_detail.sql
 # Retrieve transaction_list 
 psql --host=localhost -U ocean_user --dbname=ocean_stream -c "SET search_path TO ocean_stream;\
-              SELECT * FROM transaction_list( 'US001'::char(6), 100001::integer, 609001::integer, '2021-03-01'::date, '2021-03-31'::date)"
+              SELECT * FROM transaction_list( 'US001'::char(5), 100001::integer, 999999::integer, '2021-03-01'::date, '2021-03-31'::date);"
+# Retrieve transaction_list_in_detail 
+psql --host=localhost -U ocean_user --dbname=ocean_stream -c "SET search_path TO ocean_stream;\
+              SELECT * FROM transaction_list_detail('US001'::char(5), 100000::integer, 999999::integer, 1::integer, '2021-03-01'::date, '2021-03-31'::date);"
 # Insert trial_balance function into Postgres
 psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f reports/function_trial_balance_bspl.sql
 psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f reports/function_trial_balance_gl.sql
@@ -60,7 +67,8 @@ psql --host=localhost -U ocean_user --dbname=ocean_stream -c "SET search_path TO
 # generate financial statement
 
 # profit and loss 
-python reports/profit_loss.py
+# python reports/profit_loss.py
+python reports/profit_loss_whole_s.py
 # profit and loss by pc 
 python reports/profit_loss_by_pc_3.py
 # balance sheets progressively achieved desired results
@@ -73,5 +81,23 @@ python reports/4_balance_sheet.py
 
 # ar aging report
 python reports/ar_aging.py
+
+cd finweb
+
+echo "Starting Zookeeper..."
+~/kafka/bin/zookeeper-server-start.sh -daemon ~/kafka/config/zookeeper.properties
+
+sleep 3
+
+# 5. Start the Kafka Broker in the background
+echo "Starting Kafka Broker..."
+kafka/bin/kafka-server-start.sh -daemon ~/kafka/config/server.properties
+
+# 6. Wait a few seconds for the entire Kafka network ecosystem to accept traffic
+echo "Waiting for Kafka broker to bind to port 9092..."
+sleep 6
+
 # run django to generate Financial reports and visualizations
-python finweb/manage.py
+python manage.py migrate
+python manage.py runserver
+
