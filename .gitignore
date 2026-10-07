@@ -21,6 +21,7 @@ finweb/__pycache__/
 finweb/finreports/__pycache__/
 finweb/finweb/__pycache__/
 finweb/finreports/migrations/__pycache__/
+finweb/kafka/
 logs/
 *.log
 *.pot

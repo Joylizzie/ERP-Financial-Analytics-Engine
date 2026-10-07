@@ -46,6 +46,7 @@ bash je_double_entries/insert_je_4.sh
 
 # Insert ar_aging function into Postgres
 psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f reports/function_ar_aging.sql
+psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f reports/function_ar_aging_with_id.sql
 # Insert transaction_list function into Postgres
 psql --host=localhost -U ocean_user --dbname=ocean_stream -a -f reports/function_transaction_list.sql
 # Insert transaction_list_in_detail function into Postgres
@@ -80,5 +81,23 @@ python reports/4_balance_sheet.py
 
 # ar aging report
 python reports/ar_aging.py
+
+cd finweb
+
+echo "Starting Zookeeper..."
+~/kafka/bin/zookeeper-server-start.sh -daemon ~/kafka/config/zookeeper.properties
+
+sleep 3
+
+# 5. Start the Kafka Broker in the background
+echo "Starting Kafka Broker..."
+kafka/bin/kafka-server-start.sh -daemon ~/kafka/config/server.properties
+
+# 6. Wait a few seconds for the entire Kafka network ecosystem to accept traffic
+echo "Waiting for Kafka broker to bind to port 9092..."
+sleep 6
+
 # run django to generate Financial reports and visualizations
-python run finweb/manage.py
+python manage.py migrate
+python manage.py runserver
+

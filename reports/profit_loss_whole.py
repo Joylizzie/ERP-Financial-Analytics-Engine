@@ -8,7 +8,6 @@ from bokeh.plotting import figure, show
 from bokeh.models import (HoverTool, ColumnDataSource, LabelSet,NumeralTickFormatter)
 from math import pi
 import pathlib
-from millify import millify
 
 # built a waterfall chart showing company level of profit and loss: revenue deduct by cost of goods sold to get gross margin, 
 # then deduct all kinds of expenses to get the net profit 
@@ -63,8 +62,7 @@ def get_sub_graph(conn):
     df['color'] = 'grey'
     df.loc[df.amount < 0, 'color'] = 'red'
     df.loc[df.amount < 0, 'label_pos'] = df.label_pos - 100000
-    # df["bar_label"] = df["amount"].map('{:,.0f}'.format)
-    df["bar_label"] = df["amount"].apply(lambda x: millify(x, precision=1))
+    df["bar_label"] = df["amount"].map('{:,.0f}'.format)
     print(df)
 
     TOOLS = "box_zoom,reset,save"

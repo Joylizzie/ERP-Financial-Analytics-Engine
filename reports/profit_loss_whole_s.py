@@ -3,7 +3,7 @@ import psycopg2
 import datetime
 import csv
 import pandas as pd
-from bokeh.io import output_notebook, output_file, save
+from bokeh.io import output_notebook, output_file, save, export_png
 from bokeh.plotting import figure, curdoc, show
 from bokeh.models import (HoverTool, ColumnDataSource, LabelSet,NumeralTickFormatter, FixedTicker)
 from math import pi
@@ -62,15 +62,17 @@ def get_sub_graph(conn):
     df["bar_label"] = list(map(num_format, df['amount']))
 
     source = ColumnDataSource(df)
+
+
     # the max of y_range will be the max of df['amount'], then increase 5%
     p = figure(x_range=list(df.index), y_range=(0, max(df['amount'])*1.05),
-               width=800, title = "Company wide Profit and Loss Waterfall")    
+               width=800, title = "Ocean Stream (US) P&L Waterfall - Mar 2021")    
 
     p.add_tools(HoverTool(tooltips=[("label", "@index"),
                   ("Amount", "@bar_label")], mode='vline'))
     
     p.segment(x0='index', y0='y_start', x1="index", y1='running_total',
-          source=source, color="color", line_width=50)
+          source=source, color="color", line_width=40)
     
     p.grid.grid_line_alpha=0.3
     p.yaxis[0].formatter = NumeralTickFormatter(format="($ 0 a)") # format to million
@@ -88,11 +90,19 @@ def get_sub_graph(conn):
     
     # save the html file to folder '/home/lizhi/projects/joylizzie/Financial_reports/reporting_results/htmls'
     head, tail =  os.path.split(pathlib.Path(__file__).parent.absolute())
+    html_dir = os.path.join(head, 'reporting_results', 'htmls')
+    os.makedirs(html_dir, exist_ok=True)
 
-    path = os.path.join(head, 'reporting_results/htmls', f'profit_loss_whole_{end_date.strftime("%m_%Y")}.html')
-    output_file(filename=path, title=f'profit and loss during {end_date.strftime("%b-%Y")}')        
+    png_dir = os.path.join(head, 'reporting_results', 'pngs')
+    os.makedirs(png_dir, exist_ok=True)
+
+    path_html = os.path.join(html_dir, f'profit_loss_waterfall_whole_2021_03.html')
+    output_file(filename=path_html, title=f'profit and loss during Mar 2021')        
+    path_png = os.path.join(png_dir, f'profit_loss_waterfall_whole_2021_03.png')
+    output_file(filename=path_png, title=f'profit and loss during Mar 2021')        
     
     save(p)
+    export_png(p, filename=path_png)
     
 if __name__ == '__main__':
     db = 'ocean_stream'
